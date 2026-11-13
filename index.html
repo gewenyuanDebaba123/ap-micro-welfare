@@ -840,6 +840,9 @@ body.is-u1-morphing .home-screen{visibility:visible;pointer-events:none}
 }
 @media (max-width: 530px) {
   #econLab header { display: grid; grid-template-columns: auto minmax(0,1fr) auto; }
+  #econLab header > [data-back] { grid-column: 1; grid-row: 1; }
+  #econLab header > .lab-heading { grid-column: 2; grid-row: 1; }
+  #econLab header > .lab-tools { grid-column: 3; grid-row: 1; }
   #econLab header h1 { font-size: clamp(15px, 4.3vw, 19px); }
   #econLab .lab-unit-select { font-size: 9px; letter-spacing: .01em; }
   #econLab .lab-tools .reset-btn { width: 34px; flex-basis: 34px; padding: 0; }
@@ -1279,36 +1282,38 @@ body.is-u1-morphing .home-screen{visibility:visible;pointer-events:none}
   color: var(--ink-soft);
 }
 
-/* Dictionary entry and reader share the paper-and-ink palette of the charts. */
-.vocab-entry {
-  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 25px;
-  text-align: left; padding: 25px 29px; margin: 18px 0 32px; border: 1px solid #c9cdbb;
-  border-radius: 18px; background: #e9eddf; color: #304b41; cursor: pointer;
-  overflow: hidden; font-family: var(--sans); transition: background .2s, transform .2s;
+/* Charts and glossary use the same top-level navigation. */
+.home-head:has(.main-mode-nav) { max-width: none; }
+.main-mode-nav {
+  display: flex; align-items: baseline; gap: 32px; padding: 0;
+  margin: 0; font-family: Georgia,'Songti SC',serif;
 }
-.vocab-entry:hover { background: #e1e8d7; transform: translateY(-2px); }
-.vocab-entry-copy { min-width: 0; }
-.vocab-eyebrow { display: block; font: 600 10px/1.5 var(--sans); letter-spacing: .12em; color: #77836a; }
-.vocab-entry h2 { margin: 7px 0 8px; font: 29px/1.25 Georgia,'Songti SC',serif; }
-.vocab-entry p { margin: 0; font-size: 13px; line-height: 1.6; color: #5a6e5c; }
-.vocab-entry-meta { display: flex; align-items: center; gap: 30px; margin-top: 17px; font-size: 11px; color: #64755f; }
-.vocab-entry-meta b { font-size: 20px; font-weight: 400; }
-.vocab-entry-art { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 0 24px; border-left: 1px solid #c2cbb5; flex-shrink: 0; }
-.vocab-entry-art > span { font: italic 15px Georgia,serif; color: #7c8b70; }
-.vocab-entry-art strong { font: 33px Georgia,serif; letter-spacing: .01em; }
-.vocab-entry-art i { font: 22px var(--sans); color: #ac8b47; padding: 0 6px; }
-.vocab-entry-art mark { background: #d9dfbd; font-size: 11px; padding: 3px 9px; color: #50644e; }
-:root:not([data-lab-ready]) .vocab-entry { display: none; }
+.main-mode-nav button, #econGlossary .main-mode-nav button {
+  position: relative; display: block; flex: 0 0 auto;
+  padding: 0 0 9px; border: 0; border-radius: 0; background: transparent;
+  font: 500 32px/1.3 Georgia,'Songti SC',serif; letter-spacing: .005em;
+  color: #8a8b78; cursor: pointer; white-space: nowrap;
+  transition: color .18s ease;
+}
+.main-mode-nav button:hover, #econGlossary .main-mode-nav button:hover { color: #50634f; }
+.main-mode-nav button[aria-current=page], #econGlossary .main-mode-nav button[aria-current=page] { color: #30483d; }
+.main-mode-nav button[aria-current=page]::after {
+  content: ''; position: absolute; height: 2px; left: 0; right: 0; bottom: 0;
+  background: #a48b54; opacity: .7;
+}
+.main-mode-nav button:focus { outline: none; }
+.main-mode-nav button:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
+:root:not([data-lab-ready]) .main-mode-nav { pointer-events: none; }
 #econGlossary { position: fixed; inset: 0; z-index: 79; background: #f4efdf; color: #35463b; font-family: var(--sans); user-select: none; }
 #econGlossary[hidden] { display: none; }
 #econGlossary * { box-sizing: border-box; }
 #econGlossary button { font: inherit; cursor: pointer; color: inherit; }
-#econGlossary button:focus, #econGlossary input:focus, #vocabTermTitle:focus, .vocab-entry:focus { outline: none; }
+#econGlossary button:focus, #econGlossary input:focus, #vocabTermTitle:focus { outline: none; }
 #econGlossary button:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
-.vocab-shell { display: flex; flex-direction: column; height: 100vh; height: 100dvh; max-width: 1600px; margin: auto; padding: 22px 30px 26px; }
+.vocab-shell { display: flex; flex-direction: column; height: 100vh; height: 100dvh; padding: 52px clamp(28px,3.4vw,52px) 26px; }
 .vocab-header { display: flex; align-items: center; gap: 17px; flex-shrink: 0; }
-.vocab-header h1 { margin: 4px 0 0; font: 25px/1.25 Georgia,'Songti SC',serif; }
-.vocab-header .lang-toggle { margin-left: auto; flex-shrink: 0; }
+.vocab-header h1 { margin: 0; }
+.vocab-header .lang-toggle { position: fixed; top: 24px; right: 30px; }
 .vocab-tools { display: flex; gap: 12px; padding: 21px 0 17px; flex-shrink: 0; }
 .vocab-search { flex: 1; display: flex; align-items: center; gap: 10px; border: 1px solid #d2c8b4; border-radius: 10px; background: #fcf9f0; padding: 11px 14px; min-width: 0; }
 .vocab-search:focus-within { border-color: #81917a; }
@@ -1373,16 +1378,15 @@ body.is-u1-morphing .home-screen{visibility:visible;pointer-events:none}
  .vocab-categories > button { flex: 0 0 auto; padding: 7px 10px; border: 1px solid #ded5bf; gap: 9px; }
  .vocab-source { display: none; }
  .vocab-reading { padding: 23px; }
- .vocab-shell { padding: 20px; }
+
 }
 @media (max-width: 680px) {
- .vocab-entry { padding: 20px; margin-bottom: 22px; }
- .vocab-entry h2 { font-size: 25px; }
- .vocab-entry-art { display: none; }
- .vocab-shell { padding: 15px; }
+ .vocab-shell { padding: 68px 22px 15px; }
+ .main-mode-nav { gap: 20px; }
+ .main-mode-nav button, #econGlossary .main-mode-nav button { font-size: 22px; }
+ .vocab-header .lang-toggle { top: 16px; right: 18px; }
  .vocab-header { gap: 10px; }
- .vocab-header h1 { font-size: 20px; }
- .vocab-header .vocab-eyebrow { font-size: 8px; letter-spacing: .04em; }
+
  .vocab-header .lang-toggle { height: 32px; }
  .vocab-header .lang-toggle button { width: 31px; min-width: 31px; height: 24px; font-size: 10px; }
  .vocab-tools { flex-direction: column; gap: 9px; padding: 15px 0 11px; }
@@ -1398,7 +1402,12 @@ body.is-u1-morphing .home-screen{visibility:visible;pointer-events:none}
  .vocab-show-reading .vocab-list-return { display: block; align-self: flex-start; border: 0; background: transparent; padding: 13px 2px max(0px,env(safe-area-inset-bottom)); color: #46684f !important; font-size: 13px !important; }
  .vocab-chart-link { flex-wrap: wrap; }
 }
-@media (prefers-reduced-motion: reduce) { .vocab-entry { transition: none; } }
+@media (max-width: 760px) {
+ .vocab-shell { padding: 68px 22px 15px; }
+ .vocab-header .lang-toggle { top: 16px; right: 18px; }
+}
+@media (max-width: 390px) { .main-mode-nav { gap: 16px; } .main-mode-nav button, #econGlossary .main-mode-nav button { font-size: 19px; } }
+@media (prefers-reduced-motion: reduce) { .main-mode-nav button { transition: none; } }
 #econGlossary .lang-toggle button {
   display: flex; align-items: center; justify-content: center; white-space: nowrap;
   min-width: 34px; width: 34px; flex: 0 0 34px; font-size: 11px; line-height: 1;
@@ -7526,10 +7535,14 @@ function glossaryPaintList(){
   glossaryPaintArticle({motion:false});
 }
 
+function glossaryNavigation(inGlossary){
+  return `<button type="button" ${inGlossary?'data-vocab-close':'aria-current="page"'}><span class="lang-zh">AP 微观图表</span><span class="lang-en">AP Micro Charts</span></button>
+    <button type="button" ${inGlossary?'data-vocab-current aria-current="page"':'data-vocab-open'}><span class="lang-zh">微观词汇表</span><span class="lang-en">Micro glossary</span></button>`;
+}
+
 function glossaryRender(){
   glossaryLayer.innerHTML=`<div class="vocab-shell">
-    <header class="vocab-header"><button class="back-btn" type="button" data-vocab-close aria-label="${T('返回首页','Back to home')}"><span aria-hidden="true">←</span></button>
-      <div><span class="vocab-eyebrow">MICROECONOMICS / GLOSSARY</span><h1>${T('微观词汇表','Microeconomics glossary')}</h1></div>
+    <header class="vocab-header"><h1 class="main-mode-nav" aria-label="${T('学习板块','Study sections')}">${glossaryNavigation(true)}</h1>
       <div class="lang-toggle" role="group" aria-label="${T('语言','Language')}"><button type="button" data-vocab-lang="zh" aria-pressed="${lang==='zh'}">中文</button><button type="button" data-vocab-lang="en" aria-pressed="${lang==='en'}">EN</button></div>
     </header>
     <div class="vocab-tools"><label class="vocab-search"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
@@ -7554,8 +7567,12 @@ function openGlossary(trigger=glossaryEntry){
   glossaryLayer.hidden=false;
   document.title=T('微观词汇表 · AP 微观图表','Microeconomics glossary · AP Micro Charts');
   if(!glossaryLayer.firstElementChild)glossaryRender();
-  glossaryLayer.querySelector('[data-vocab-close]').focus({preventScroll:true});
-  if(!reducedMotion()&&glossaryLayer.animate)glossaryLayer.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
+  glossaryLayer.querySelector('[data-vocab-current]').focus({preventScroll:true});
+  if(!reducedMotion()){
+    for(const content of glossaryLayer.querySelectorAll('.vocab-workspace,.vocab-tools')){
+      content.animate([{opacity:.2,filter:'blur(3px)'},{opacity:1,filter:'blur(0)'}],{duration:180,easing:'ease-out'});
+    }
+  }
 }
 
 function closeGlossary(){
@@ -7567,15 +7584,11 @@ function closeGlossary(){
 
 function setupGlossary(){
   const home=document.querySelector('#homeScreen .home');
-  glossaryEntry=document.createElement('button');
-  glossaryEntry.type='button';
-  glossaryEntry.className='vocab-entry';
-  glossaryEntry.setAttribute('aria-label','微观词汇表 / Microeconomics glossary');
-  glossaryEntry.innerHTML=`<div class="vocab-entry-copy"><span class="vocab-eyebrow">THE ECONOMICS LEXICON</span><h2><span class="lang-zh">微观词汇表</span><span class="lang-en">Microeconomics glossary</span></h2>
-    <p><span class="lang-zh">中英对照，连起公式、图表和易混概念。</span><span class="lang-en">Connect the words, formulas and ideas behind each graph.</span></p>
-    <span class="vocab-entry-meta"><span class="lang-zh">${glossaryCategories.length} 类概念 · ${glossaryTerms.length} 个词条</span><span class="lang-en">${glossaryCategories.length} categories · ${glossaryTerms.length} terms</span><b aria-hidden="true">↗</b></span></div>
-    <div class="vocab-entry-art" aria-hidden="true"><span>opportunity cost</span><strong>MC <i>↔</i> ATC</strong><span>marginal · equilibrium · surplus</span><mark>理解 / connect</mark></div>`;
-  home.querySelector('.home-head').after(glossaryEntry);
+  const title=home.querySelector('.home-title');
+  title.classList.add('main-mode-nav');
+  title.setAttribute('aria-label',T('学习板块','Study sections'));
+  title.innerHTML=glossaryNavigation(false);
+  glossaryEntry=title.querySelector('[data-vocab-open]');
   glossaryLayer=document.createElement('section');
   glossaryLayer.id='econGlossary';glossaryLayer.hidden=true;
   glossaryLayer.setAttribute('aria-label','微观词汇表 / Microeconomics glossary');
