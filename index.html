@@ -1278,6 +1278,132 @@ body.is-u1-morphing .home-screen{visibility:visible;pointer-events:none}
   line-height: 1.85;
   color: var(--ink-soft);
 }
+
+/* Dictionary entry and reader share the paper-and-ink palette of the charts. */
+.vocab-entry {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 25px;
+  text-align: left; padding: 25px 29px; margin: 18px 0 32px; border: 1px solid #c9cdbb;
+  border-radius: 18px; background: #e9eddf; color: #304b41; cursor: pointer;
+  overflow: hidden; font-family: var(--sans); transition: background .2s, transform .2s;
+}
+.vocab-entry:hover { background: #e1e8d7; transform: translateY(-2px); }
+.vocab-entry-copy { min-width: 0; }
+.vocab-eyebrow { display: block; font: 600 10px/1.5 var(--sans); letter-spacing: .12em; color: #77836a; }
+.vocab-entry h2 { margin: 7px 0 8px; font: 29px/1.25 Georgia,'Songti SC',serif; }
+.vocab-entry p { margin: 0; font-size: 13px; line-height: 1.6; color: #5a6e5c; }
+.vocab-entry-meta { display: flex; align-items: center; gap: 30px; margin-top: 17px; font-size: 11px; color: #64755f; }
+.vocab-entry-meta b { font-size: 20px; font-weight: 400; }
+.vocab-entry-art { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 0 24px; border-left: 1px solid #c2cbb5; flex-shrink: 0; }
+.vocab-entry-art > span { font: italic 15px Georgia,serif; color: #7c8b70; }
+.vocab-entry-art strong { font: 33px Georgia,serif; letter-spacing: .01em; }
+.vocab-entry-art i { font: 22px var(--sans); color: #ac8b47; padding: 0 6px; }
+.vocab-entry-art mark { background: #d9dfbd; font-size: 11px; padding: 3px 9px; color: #50644e; }
+:root:not([data-lab-ready]) .vocab-entry { display: none; }
+#econGlossary { position: fixed; inset: 0; z-index: 79; background: #f4efdf; color: #35463b; font-family: var(--sans); user-select: none; }
+#econGlossary[hidden] { display: none; }
+#econGlossary * { box-sizing: border-box; }
+#econGlossary button { font: inherit; cursor: pointer; color: inherit; }
+#econGlossary button:focus, #econGlossary input:focus, #vocabTermTitle:focus, .vocab-entry:focus { outline: none; }
+#econGlossary button:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.vocab-shell { display: flex; flex-direction: column; height: 100vh; height: 100dvh; max-width: 1600px; margin: auto; padding: 22px 30px 26px; }
+.vocab-header { display: flex; align-items: center; gap: 17px; flex-shrink: 0; }
+.vocab-header h1 { margin: 4px 0 0; font: 25px/1.25 Georgia,'Songti SC',serif; }
+.vocab-header .lang-toggle { margin-left: auto; flex-shrink: 0; }
+.vocab-tools { display: flex; gap: 12px; padding: 21px 0 17px; flex-shrink: 0; }
+.vocab-search { flex: 1; display: flex; align-items: center; gap: 10px; border: 1px solid #d2c8b4; border-radius: 10px; background: #fcf9f0; padding: 11px 14px; min-width: 0; }
+.vocab-search:focus-within { border-color: #81917a; }
+.vocab-search svg { width: 18px; height: 18px; flex: 0 0 18px; color: #71806b; }
+.vocab-search input { width: 100%; min-width: 0; padding: 0; border: 0; font: 13px/1.5 var(--sans); color: #304d40; background: transparent; }
+.vocab-search input::placeholder { color: #7a806e; }
+.vocab-filters { display: flex; align-items: center; gap: 5px; }
+.vocab-filters button { padding: 10px 13px; border: 1px solid #d6cdb9; background: transparent; border-radius: 9px; font-size: 12px !important; white-space: nowrap; }
+.vocab-filters [aria-pressed=true] { background: #34564c; color: #fbf8ef !important; border-color: #34564c; }
+.vocab-workspace { display: grid; grid-template-columns: 185px 255px minmax(0,1fr); gap: 15px; flex: 1; min-height: 0; }
+.vocab-categories { display: flex; flex-direction: column; gap: 4px; min-height: 0; overflow: auto; padding: 5px 0; }
+.vocab-categories > button { display: flex; justify-content: space-between; gap: 6px; align-items: center; padding: 11px 10px; border: 0; background: transparent; border-radius: 8px; text-align: left; font-size: 12px !important; }
+.vocab-categories button > span { display: flex; align-items: baseline; gap: 8px; }
+.vocab-categories em { font-style: normal; color: #8d947d; font-size: 9px; }
+.vocab-categories small { font-size: 10px; color: #838775; }
+.vocab-categories [aria-pressed=true] { background: #e3e8d9; font-weight: 650; }
+.vocab-source { margin: auto 0 0; padding: 22px 10px 3px; font-size: 10px; }
+.vocab-source a { color: #7d7c68; text-decoration: none; }
+.vocab-index { border: 1px solid #dad0bc; border-radius: 14px; display: flex; flex-direction: column; background: #f9f6ec; min-height: 0; overflow: hidden; }
+.vocab-index-head { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #7a816c; padding: 15px; border-bottom: 1px solid #e3dcca; flex-shrink: 0; }
+.vocab-index-head > span:last-child { font-size: 9px; letter-spacing: .08em; }
+.vocab-term-list { overflow: auto; overscroll-behavior: contain; flex: 1; min-height: 0; scrollbar-gutter: stable; padding: 5px; }
+.vocab-term-list > button { display: block; width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 8px; padding: 13px 11px; margin: 0 0 3px; }
+.vocab-term-list > button:hover { background: #eeefdf; }
+.vocab-term-list > button[aria-pressed=true] { background: #e7eddf; border-color: #c9d2bd; }
+.vocab-term-top { display: flex; gap: 9px; justify-content: space-between; align-items: flex-start; }
+.vocab-term-top b { font-weight: 600; font-size: 13px; line-height: 1.5; }
+.vocab-term-top i { font-style: normal; font-size: 9px; color: #8a723d; white-space: nowrap; border: 1px solid #d9cba7; border-radius: 3px; padding: 1px 3px; margin-top: 2px; }
+.vocab-term-english { display: block; margin-top: 4px; font-size: 11px; color: #6d7b67; line-height: 1.5; }
+.vocab-abbr { display: block; margin-top: 5px; font: 11px/1.3 Georgia,serif; color: #97753a; }
+.vocab-reading { min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; border: 1px solid #d8ceba; background: #fcf9f0; border-radius: 16px; padding: 26px 31px; scrollbar-gutter: stable; user-select: text; }
+.vocab-reading-head { display: flex; justify-content: space-between; gap: 12px; color: #81866d; font-size: 10px; }
+.vocab-reading-head span:last-child { color: #9a7633; }
+.vocab-reading h2 { font: 27px/1.35 Georgia,'Songti SC',serif; margin: 14px 0 5px; overflow-wrap: anywhere; }
+.vocab-translation { margin: 0; color: #687b69; font: 15px/1.5 Georgia,'PingFang SC',serif; }
+.vocab-translation span { display: inline-block; padding-left: 12px; color: #997a42; font-style: italic; }
+.vocab-key { padding: 15px 17px; background: #edf0e1; border-left: 3px solid #899d68; margin: 23px 0; border-radius: 0 9px 9px 0; }
+.vocab-key > span { color: #7b856a; font-size: 10px; }
+.vocab-key p { margin: 7px 0 0; font-size: 16px; font-weight: 600; line-height: 1.65; }
+.vocab-key mark { color: #34533e; background: linear-gradient(transparent 55%,#dce3ba 55%); padding-bottom: 2px; }
+.vocab-reading h3 { font-size: 12px; margin: 0 0 8px; font-weight: 650; color: #4f6a54; }
+.vocab-section { margin: 22px 0; }
+.vocab-section p { margin: 0; font-size: 14px; line-height: 1.95; color: #4d5a4c; }
+.vocab-formula { background: #f2ecdd; padding: 14px 17px; border-radius: 9px; }
+.vocab-formula h3 { color: #8a754d; }
+.vocab-formula p { font: 16px/1.7 Georgia,'PingFang SC',serif; margin: 0; overflow-wrap: anywhere; }
+.vocab-pitfall { padding: 16px 0; border-block: 1px solid #e6decc; }
+.vocab-pitfall h3 { color: #ac6947; }
+.vocab-related > div { display: flex; flex-wrap: wrap; gap: 7px; }
+.vocab-related button { border: 1px solid #d8cfb9; border-radius: 7px; padding: 7px 10px; background: #faf7ec; font-size: 11px !important; text-align: left; }
+.vocab-related button span { padding-left: 9px; color: #8a967b; }
+.vocab-chart-link { display: flex; width: 100%; justify-content: space-between; gap: 15px; margin: 24px 0 0; padding: 13px 0 0; border: 0; border-top: 1px solid #e3dcc9; background: transparent; color: #55745c !important; font-size: 11px !important; text-align: left; }
+.vocab-chart-link span { text-align: right; }
+.vocab-list-return { display: none; }
+.vocab-empty { color: #737b68; padding: 20px 12px; font-size: 13px; line-height: 1.7; }
+.vocab-empty button { display: block; border: 0; padding: 8px 0; background: transparent; color: #41684f !important; text-decoration: underline; }
+.vocab-no-selection { padding: 40px 0; color: #7c8a70; }
+.vocab-no-selection > span { font: italic 66px Georgia,serif; opacity: .4; }
+@media (max-width: 1150px) {
+ .vocab-workspace { grid-template-columns: 245px minmax(0,1fr); grid-template-rows: auto minmax(0,1fr); gap: 12px; }
+ .vocab-categories { grid-column: 1/-1; flex-direction: row; overflow: auto; padding: 0 0 6px; gap: 6px; }
+ .vocab-categories > button { flex: 0 0 auto; padding: 7px 10px; border: 1px solid #ded5bf; gap: 9px; }
+ .vocab-source { display: none; }
+ .vocab-reading { padding: 23px; }
+ .vocab-shell { padding: 20px; }
+}
+@media (max-width: 680px) {
+ .vocab-entry { padding: 20px; margin-bottom: 22px; }
+ .vocab-entry h2 { font-size: 25px; }
+ .vocab-entry-art { display: none; }
+ .vocab-shell { padding: 15px; }
+ .vocab-header { gap: 10px; }
+ .vocab-header h1 { font-size: 20px; }
+ .vocab-header .vocab-eyebrow { font-size: 8px; letter-spacing: .04em; }
+ .vocab-header .lang-toggle { height: 32px; }
+ .vocab-header .lang-toggle button { width: 31px; min-width: 31px; height: 24px; font-size: 10px; }
+ .vocab-tools { flex-direction: column; gap: 9px; padding: 15px 0 11px; }
+ .vocab-search { padding: 11px; }
+ .vocab-search input { font-size: 16px; }
+ .vocab-filters button { padding: 7px 12px; }
+ .vocab-workspace { grid-template-columns: minmax(0,1fr); }
+ .vocab-reading { display: none; padding: 22px 20px; }
+ .vocab-reading h2 { font-size: 26px; }
+ .vocab-show-reading .vocab-index, .vocab-show-reading .vocab-categories, .vocab-show-reading .vocab-tools { display: none; }
+ .vocab-show-reading .vocab-workspace { display: flex; flex-direction: column; padding-top: 15px; }
+ .vocab-show-reading .vocab-reading { display: block; flex: 1; }
+ .vocab-show-reading .vocab-list-return { display: block; align-self: flex-start; border: 0; background: transparent; padding: 13px 2px max(0px,env(safe-area-inset-bottom)); color: #46684f !important; font-size: 13px !important; }
+ .vocab-chart-link { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .vocab-entry { transition: none; } }
+#econGlossary .lang-toggle button {
+  display: flex; align-items: center; justify-content: center; white-space: nowrap;
+  min-width: 34px; width: 34px; flex: 0 0 34px; font-size: 11px; line-height: 1;
+}
+#econGlossary .lang-toggle button[aria-pressed=true] { color: #fff9ed; }
 </style>
 </head>
 <body class="is-home">
@@ -6208,7 +6334,19 @@ root.addEventListener('click',e=>{if(morphing)return;const b=e.target.closest('b
   if(curveFields[active]?.includes(key)||shiftFields(active,before,state[active]).length)beginCurveMotion(before);
   else if(before.policy!==state[active].policy||before.view!==state[active].view||before.shape!==state[active].shape||before.period!==state[active].period)clearCurveMotion();
   refresh();save();}});
-function close(){if(morphing||root.hidden)return;topicTransition++;root.querySelector('main').inert=false;finish();clearCurveMotion();paintGraph();endGuidePractice();save();animateLab(false);}
+function close(){
+  if(morphing||root.hidden)return;
+  topicTransition++;
+  root.querySelector('main').inert=false;
+  finish();clearCurveMotion();paintGraph();endGuidePractice();save();
+  animateLab(false,()=>{
+    if(typeof glossaryFromChart!=='undefined'&&glossaryFromChart){
+      glossaryFromChart=false;
+      openGlossary();
+      glossaryLayer.querySelector('[data-vocab-chart]')?.focus({preventScroll:true});
+    }
+  });
+}
 // Keep the original continuous reveal and scale of the live page.
 function animateEconPage(layer,motion,thumb,target,opening,complete,legacyLegend=null) {
   if(!thumb||!target||reducedMotion()||!layer.animate){complete();return;}
@@ -6931,6 +7069,573 @@ function endGuidePractice({redraw=true}={}) {
   if(redraw&&!root.hidden&&active==='2.6')refresh();
 }
 
+/* The glossary is embedded in index.html by build.py and uses the lab's language and navigation. */
+const glossaryCategories=[
+ {id:'choice',name:['选择与贸易','Choice & trade'],unit:'1'},
+ {id:'markets',name:['供给与需求','Supply & demand'],unit:'2'},
+ {id:'elasticity',name:['弹性与收益','Elasticity & revenue'],unit:'2'},
+ {id:'welfare',name:['剩余与政策','Surplus & policy'],unit:'2 / 6'},
+ {id:'costs',name:['生产与成本','Production & costs'],unit:'3'},
+ {id:'firms',name:['企业与市场结构','Firms & market structures'],unit:'3 / 4'},
+ {id:'factors',name:['要素市场','Factor markets'],unit:'5'},
+ {id:'failure',name:['市场失灵与分配','Market failure & distribution'],unit:'6'}
+];
+const glossaryTerms=[
+ {id:'scarcity',category:'choice',zh:'稀缺性',en:'Scarcity',core:false,topic:'1.1',related:['opportunity','ppc'],
+  detail:['资源相对人的欲望有限，因此个人、企业和社会必须作出选择。即使收入很高，时间、土地和劳动力也有约束。稀缺性是所有经济选择的起点。','Resources are limited relative to wants, so individuals, firms and society must make choices. Income can rise while time, land and labor remain constrained.'],
+  key:['有限的资源，迫使我们在用途之间取舍。','Limited resources require choices between competing uses.'],
+  example:['晚上一共两小时，复习经济多用一小时，留给其他科目的时间就少一小时。','With two study hours, spending another hour on economics leaves one less hour for another subject.'],
+  trap:['稀缺性长期存在。短缺则是某个价格下需求量超过供给量。','Scarcity is a general constraint. A shortage occurs when quantity demanded exceeds quantity supplied at a particular price.']},
+ {id:'opportunity',category:'choice',zh:'机会成本',en:'Opportunity cost',abbr:'OC',core:true,topic:'1.4',related:['comparative','sunk','implicit'],
+  detail:['作出选择时，放弃的最佳替代方案的价值。既可能包含金钱，也可能包含时间或放弃的收入。比较两个选择时，只比较与这次决定相关的收益和成本。','The value of the best alternative forgone when making a choice. It can involve money, time or income sacrificed.'],
+  key:['找放弃的“最佳替代”，并写清成本单位。','Identify the best forgone alternative and state its units.'],
+  formula:'OC of 1 X = Y forgone / X gained',
+  example:['把资源从 10 X、20 Y 调到 14 X、12 Y，多 4 X 要少 8 Y，平均每 1 X 的机会成本是 2 Y。','Moving from (10 X, 20 Y) to (14 X, 12 Y) gives up 8 Y for 4 X. The average cost is 2 Y per X.'],
+  trap:['放弃的所有选项价值相加会高估机会成本，只取最佳替代方案。','Adding every rejected option overstates opportunity cost. Use the best alternative.']},
+ {id:'ppc',category:'choice',zh:'生产可能性曲线',en:'Production possibilities curve',abbr:'PPC / PPF',core:true,topic:'1.3',related:['productive','opportunity'],
+  detail:['给定资源与技术、充分有效利用资源时，两种产品的最大可行组合。线上有效率，线内可行但资源未充分利用，线外在当前条件下不可行。资源或技术增加可使边界外移。','The maximum feasible combinations of two goods with given resources and technology used efficiently. Points inside are feasible but inefficient, and points outside are currently unattainable.'],
+  key:['沿线移动是重新配置，整条外移是生产能力增长。','Moving along the curve reallocates resources. An outward shift expands capacity.'],
+  example:['闲置工人重新就业，可以从线内走到线上。新技术则可能把曲线向外推。','Reemploying idle workers moves an economy toward its frontier. New technology can shift the frontier outward.'],
+  trap:['向外弯的 PPC 表示增加一种商品时机会成本递增。直线 PPC 的机会成本不变。','A bowed-out PPC shows increasing opportunity cost. A straight PPC shows constant opportunity cost.']},
+ {id:'absolute',category:'choice',zh:'绝对优势',en:'Absolute advantage',core:false,topic:'1.4',related:['comparative'],
+  detail:['用相同数量投入生产更多产出，或用更少投入生产相同产出的能力。判断产出表时比产量，判断投入表时比耗费。','The ability to produce more with the same inputs or the same output with fewer inputs. Compare output in output tables and resource use in input tables.'],
+  key:['产出表选更大，投入表选更小。','Choose greater output or smaller input requirements.'],
+  example:['同样一天，A 做 8 个蛋糕，B 做 5 个，A 在蛋糕生产上有绝对优势。','If A makes 8 cakes per day and B makes 5, A has absolute advantage in cakes.'],
+  trap:['一个国家可以在两种商品上都有绝对优势，贸易收益仍由机会成本差异决定。','A country may have absolute advantage in both goods. Different opportunity costs can still support trade.']},
+ {id:'comparative',category:'choice',zh:'比较优势',en:'Comparative advantage',core:true,topic:'1.4',related:['absolute','opportunity','trade'],
+  detail:['以更低机会成本生产某种商品的能力。先分别计算两个生产者生产 1 单位该商品要放弃什么，再比较机会成本。专业化应以比较优势为依据。','The ability to produce a good at lower opportunity cost. Calculate what each producer sacrifices per unit before comparing them.'],
+  key:['比较每单位的机会成本，较低者有比较优势。','The producer with lower opportunity cost has comparative advantage.'],
+  example:['A 做 1 X 要少 2 Y，B 要少 4 Y，A 在 X 上有比较优势。','If A gives up 2 Y per X and B gives up 4 Y per X, A has comparative advantage in X.'],
+  trap:['生产得最多的人未必有比较优势。机会成本相同时，没有由比较优势形成的严格互利区间。','Higher output does not establish comparative advantage. Equal opportunity costs leave no strictly mutually beneficial trade interval.']},
+ {id:'trade',category:'choice',zh:'贸易条件',en:'Terms of trade',core:true,topic:'1.4',related:['comparative','opportunity'],
+  detail:['两种商品交换时约定的比率。出口者要求得到的商品多于自己生产该出口品的机会成本，进口者要求付出的商品少于自己生产的机会成本。','The rate at which goods are exchanged. The exporter must receive more than its opportunity cost, while the importer must pay less than its own opportunity cost.'],
+  key:['双方严格获利时，交换比率位于两方机会成本之间。','For strictly positive gains to both sides, the rate lies between their opportunity costs.'],
+  example:['若 1 X 的机会成本分别为 2 Y 和 4 Y，按 1 X 换 3 Y 交易，双方都获利。','With opportunity costs of 2 Y and 4 Y per X, exchanging 1 X for 3 Y benefits both sides.'],
+  trap:['刚好落在区间边界时，一方只是不亏，没有严格的额外收益。','At an endpoint, one side is indifferent and receives no strict gain.']},
+ {id:'marginal',category:'choice',zh:'边际分析',en:'Marginal analysis',core:true,topic:'1.6',related:['mc','mr','utility'],
+  detail:['比较再增加一点行动带来的额外收益与额外成本。若 MB 大于 MC，增加这项行动会提高净收益。连续可分的内点最优通常满足 MB = MC。','Compare the extra benefit and extra cost of one more unit of an action. If MB exceeds MC, expanding raises net benefit. A divisible interior optimum typically equates them.'],
+  key:['问“再多一单位值不值得”。','Ask whether one more unit is worthwhile.'],
+  formula:'Net benefit = Total benefit − Total cost',
+  example:['多复习半小时的收益比放弃的睡眠价值大，就值得继续。','Another half-hour of study is worthwhile if its extra benefit exceeds the value of the sleep sacrificed.'],
+  trap:['离散单位不必恰好出现 MB = MC。要比较多做或少做一单位的净收益。','For indivisible units, equality need not occur. Compare the net gains from adding or removing a unit.']},
+ {id:'sunk',category:'choice',zh:'沉没成本',en:'Sunk cost',core:false,topic:'1.5',related:['fixed','opportunity'],
+  detail:['已经发生且无法收回的成本。当前决策改变不了它，所以评估接下来是否继续时，应比较未来相关收益与可避免成本。','A cost already incurred that cannot be recovered. Since the current decision cannot change it, compare future relevant benefits with avoidable costs.'],
+  key:['已经花掉且收不回的钱，不改变下一步的边际判断。','An irrecoverable past expense does not affect the next marginal decision.'],
+  example:['已买的不可退电影票不会因离场返还。是否继续看，取决于剩余影片与其他用途的价值。','A nonrefundable ticket cannot be recovered by leaving. Staying depends on the value of the remaining film versus other uses of time.'],
+  trap:['固定成本描述与产量的关系，沉没成本描述可否收回，两者并不完全等同。','Fixed describes how cost relates to output. Sunk describes recoverability. They are different properties.']},
+ {id:'utility',category:'choice',zh:'边际效用',en:'Marginal utility',abbr:'MU',core:false,topic:'1.6',related:['marginal','budget'],
+  detail:['额外消费一单位商品增加的总满足感。其他条件不变时，连续消费同一商品的 MU 通常递减。分配有限预算时，应比较每一元钱带来的 MU。','The increase in total satisfaction from consuming an extra unit. MU usually diminishes with successive units. Allocate a limited budget by comparing utility gained per dollar.'],
+  key:['最优分配比较 MU / P。','Compare MU per dollar when allocating spending.'],
+  formula:'MUx / Px = MUy / Py  (divisible interior optimum)',
+  example:['X 的 MU 为 12、价格 3 元，每元效用为 4。Y 的 MU 为 10、价格 2 元，每元效用为 5。','If X offers MU 12 for $3, it yields 4 per dollar. Y offering MU 10 for $2 yields 5 per dollar.'],
+  trap:['MU 下降时，总效用仍能上升，只要 MU 还大于零。','Total utility can keep rising while marginal utility falls, provided MU remains positive.']},
+ {id:'budget',category:'choice',zh:'预算约束',en:'Budget constraint',core:false,topic:'1.6',related:['utility','opportunity'],
+  detail:['给定收入和商品价格时能负担的消费组合。预算线是恰好花完收入的组合，线内也可负担。收入变动使预算线平移，一种商品价格变动使它绕另一截距旋转。','The affordable consumption bundles at given income and prices. The budget line exhausts income. Income changes shift it, while a change in one price rotates it.'],
+  key:['预算线斜率反映两种商品的相对价格。','The budget-line slope reflects relative prices.'],
+  formula:'Px × X + Py × Y ≤ Income',
+  example:['预算 12 元，X 单价 3 元，Y 单价 2 元，最多可以买 4 X 或 6 Y。','With income $12, X at $3 and Y at $2, the intercepts are 4 X and 6 Y.'],
+  trap:['花完预算只说明位于线上，还要比较效用才能判断是不是最优组合。','Spending all income places a bundle on the line. Utility comparisons determine whether it is optimal.']},
+ {id:'demand',category:'markets',zh:'需求',en:'Demand',abbr:'D',core:true,topic:'2.1',related:['quantity-demanded','normal','substitutes'],
+  detail:['其他条件不变时，在不同价格下消费者愿意且能够购买的数量之间的完整关系。偏好、收入、相关商品价格、预期和买家数量变化可以使整条需求曲线移动。','The entire relationship between price and quantities consumers are willing and able to buy, other things equal. Income, tastes, related prices, expectations and buyer numbers can shift it.'],
+  key:['商品自身价格变动沿线走，其他需求因素改变才移动整条线。','Own-price changes move along demand. Other demand determinants shift it.'],
+  example:['正常品的消费者收入上升，相同价格下购买更多，需求右移。','For a normal good, higher income increases purchases at the same price and shifts demand right.'],
+  trap:['“价格下降导致需求增加”混淆了需求与需求量，应写需求量增加。','A lower own price increases quantity demanded, rather than shifting demand.']},
+ {id:'quantity-demanded',category:'markets',zh:'需求量',en:'Quantity demanded',abbr:'Qd',core:false,topic:'2.1',related:['demand','shortage'],
+  detail:['在某个具体价格下消费者愿意且能够购买的数量，是需求曲线上的一个点。价格下降通常使需求量增加，前提是需求曲线本身保持不变。','The amount consumers are willing and able to buy at a particular price. It is a point on demand. A lower price normally raises this quantity along an unchanged curve.'],
+  key:['一个价格对应一个需求量。','A particular price corresponds to a quantity demanded.'],
+  example:['D 上价格从 80 降到 60，Qd 从 100 变成 120，两个点都在同一条线。','On unchanged demand, a price fall from 80 to 60 can raise Qd from 100 to 120.'],
+  trap:['同一价格下购买量变了，应检查需求是否移动。','If quantity changes while price stays the same, check whether demand shifted.']},
+ {id:'supply',category:'markets',zh:'供给',en:'Supply',abbr:'S',core:true,topic:'2.2',related:['quantity-supplied','mc'],
+  detail:['其他条件不变时，不同价格下生产者愿意且能够出售的数量之间的完整关系。投入成本、技术、税收补贴和卖家数量可以移动供给。','The entire relationship between price and quantities producers are willing and able to sell, other things equal. Input costs, technology, taxes, subsidies and seller numbers can shift supply.'],
+  key:['成本下降通常使供给右移，同价卖得更多。','Lower costs usually shift supply right, increasing quantity at the same price.'],
+  example:['面粉价格下降后，面包店在每一种面包价格下都愿意提供更多面包。','Cheaper flour lets bakeries offer more bread at each bread price.'],
+  trap:['供给增加在图中向右下移动，需求增加向右上移动，两者都表示同价数量增加。','An increase in supply moves right and down, while an increase in demand moves right and up. Both raise quantity at a given price.']},
+ {id:'quantity-supplied',category:'markets',zh:'供给量',en:'Quantity supplied',abbr:'Qs',core:false,topic:'2.2',related:['supply','surplus'],
+  detail:['在某个价格下生产者愿意且能够出售的数量。商品自身价格上涨通常使企业沿原供给曲线增加供给量。','The quantity producers are willing and able to sell at a specific price. A higher own price normally increases quantity supplied along the existing curve.'],
+  key:['先分清是在同一条供给线上移动，还是换了整条线。','Distinguish movement along supply from a shift of supply.'],
+  example:['价格从 80 涨到 100，供给量从 60 增至 80，供给曲线未变。','A price rise from 80 to 100 increases Qs from 60 to 80 on unchanged supply.'],
+  trap:['看到供给量增加，不能直接认定技术改善，还要看价格是否变了。','An increase in quantity supplied alone does not establish technological improvement. Check the price change.']},
+ {id:'normal',category:'markets',zh:'正常品与劣等品',en:'Normal and inferior goods',core:true,topic:'2.5',related:['income-elasticity','demand'],
+  detail:['其他条件不变，收入上升使需求增加的是正常品，使需求减少的是劣等品。分类取决于消费者在某段收入范围的行为，同一种商品可能因群体和收入阶段而不同。','A normal good has higher demand when income rises. An inferior good has lower demand, other things equal. Classification can depend on the consumer and income range.'],
+  key:['只看收入与需求变化的方向。','Compare the directions of income and demand changes.'],
+  example:['收入增加后更多坐出租、少吃方便面，出租服务可能是正常品，方便面可能是劣等品。','More taxi rides and fewer instant noodles after an income rise suggest a normal good and an inferior good respectively.'],
+  trap:['“劣等”描述收入反应，不是质量评分，也不意味着自身价格上涨时需求量增加。','Inferior describes an income response, not quality or a reversal of the usual own-price response.']},
+ {id:'substitutes',category:'markets',zh:'替代品与互补品',en:'Substitutes and complements',core:false,topic:'2.5',related:['cross-elasticity','demand'],
+  detail:['替代品可满足相近用途，一种商品涨价使另一商品的需求增加。互补品常共同使用，一种涨价使另一种的需求减少。判断时固定被研究商品自己的价格。','Substitutes serve similar uses, so a higher price of one raises demand for the other. Complements are used together, so a higher price of one lowers demand for the other.'],
+  key:['别人的价格变，研究的是本商品需求曲线的移动。','A related good’s price changes this good’s demand curve.'],
+  example:['咖啡涨价可能增加茶的需求。打印机涨价可能减少墨盒的需求。','More expensive coffee may raise tea demand. More expensive printers may reduce ink demand.'],
+  trap:['这属于交叉价格反应，不是沿本商品原需求曲线移动。','This is a cross-price response, not movement along this good’s original demand curve.']},
+ {id:'equilibrium',category:'markets',zh:'市场均衡',en:'Market equilibrium',core:true,topic:'2.6',related:['shortage','surplus','cs'],
+  detail:['在某个价格下，需求量与供给量相等，买卖计划一致。在竞争市场中，价格高低带来的过剩或短缺形成价格调整压力。供需条件变化后会出现新的均衡。','At equilibrium, quantity demanded equals quantity supplied. Shortages and surpluses create price pressure, and shifts in demand or supply generate a new equilibrium.'],
+  key:['D 与 S 的交点同时给出 P* 和 Q*。','The intersection of demand and supply determines both P* and Q*.'],
+  formula:'Qd(P*) = Qs(P*)',
+  example:['需求增加、供给不变时，新的均衡价格和数量都上升。','When demand rises with supply unchanged, equilibrium price and quantity both rise.'],
+  trap:['均衡不自动等于社会最优。外部性或市场势力可能造成效率损失。','Market equilibrium need not be socially optimal when externalities or market power exist.']},
+ {id:'shortage',category:'markets',zh:'短缺',en:'Shortage',core:true,topic:'2.7',related:['surplus','ceiling','scarcity'],
+  detail:['某个价格下 Qd 大于 Qs，购买计划超过出售计划。通常出现在价格低于竞争均衡时，会对价格产生上升压力；有约束力的最高限价可使它持续。','At a given price, Qd exceeds Qs. A price below competitive equilibrium normally creates upward price pressure. A binding ceiling can sustain the shortage.'],
+  key:['短缺量 = Qd − Qs。','Shortage equals quantity demanded minus quantity supplied.'],
+  formula:'Shortage = Qd − Qs > 0',
+  example:['价格被限制在 60，Qd = 120、Qs = 40，短缺为 80。','At a controlled price of 60, Qd 120 and Qs 40 imply a shortage of 80.'],
+  trap:['短缺不是交易量。无其他供给来源时，成交受较短一侧限制。','The shortage is not quantity traded. Trades are constrained by the short side of the market.']},
+ {id:'surplus',category:'markets',zh:'过剩',en:'Market surplus',core:false,topic:'2.7',related:['shortage','floor','ps'],
+  detail:['某个价格下 Qs 大于 Qd，出售计划超过购买计划。通常产生降价压力。有约束力的最低限价可形成持续的过剩。','At a given price, Qs exceeds Qd. It normally creates downward price pressure. A binding price floor can maintain excess supply.'],
+  key:['过剩量 = Qs − Qd。','Market surplus equals quantity supplied minus quantity demanded.'],
+  formula:'Market surplus = Qs − Qd > 0',
+  example:['价格 140 下 Qs 为 120，Qd 为 40，过剩 80。','At price 140, Qs 120 and Qd 40 imply excess supply of 80.'],
+  trap:['Market surplus 与 producer surplus 都含 surplus，但前者是数量，后者是收益面积。','Market surplus is an excess quantity. Producer surplus is a monetary gain measured as an area.']},
+ {id:'ceteris',category:'markets',zh:'其他条件不变',en:'Ceteris paribus',core:false,topic:'2.1',related:['demand','supply','equilibrium'],
+  detail:['研究一个变量的影响时，把其他相关因素固定。例如需求定律比较商品自身价格与需求量，要先固定收入、偏好和相关商品价格。','Hold other relevant factors constant when isolating one variable’s effect. The law of demand fixes income, tastes and related prices while comparing own price and quantity demanded.'],
+  key:['读题先找“什么变了”，再明确其余条件。','Identify the changed determinant before predicting the result.'],
+  example:['“工资上涨、其他条件不变”研究生产成本提高导致的供给减少。','A wage increase, other things equal, isolates the supply effect of higher production cost.'],
+  trap:['需求与供给同时增加时，均衡数量上升，但均衡价格需要比较两边移动幅度。','If demand and supply both rise, equilibrium quantity rises, but the price change depends on relative shifts.']},
+ {id:'ped',category:'elasticity',zh:'需求价格弹性',en:'Price elasticity of demand',abbr:'PED / Eᴅ',core:true,topic:'2.3',related:['midpoint','elastic','tr'],
+  detail:['衡量自身价格变化 1% 时，需求量大约变化百分之几。AP 判断大小通常使用绝对值。直线需求的斜率固定，但因 P 与 Q 的比率改变，不同位置的弹性不同。','Measures the percentage response of quantity demanded to a percentage change in own price. Its magnitude varies along a straight demand curve because the price-to-quantity ratio changes.'],
+  key:['弹性比较百分比，不能只比斜率。','Elasticity compares percentages. Slope alone is insufficient.'],formula:'Eᴅ = |%ΔQd / %ΔP|',
+  example:['价格上涨 10%，需求量下降 20%，需求价格弹性为 2。','A 10% price rise with a 20% quantity fall gives demand elasticity 2.'],
+  trap:['自身价格弹性通常取绝对值。收入和交叉价格弹性则要保留正负号。','Use magnitude for own-price classification. Keep signs for income and cross-price elasticity.']},
+ {id:'pes',category:'elasticity',zh:'供给价格弹性',en:'Price elasticity of supply',abbr:'PES / Eₛ',core:true,topic:'2.4',related:['elastic','midpoint'],
+  detail:['衡量价格变化时供给量的百分比反应。生产者越容易扩产、调整投入，供给通常越有弹性。沿着过原点的正斜率直线，价格与数量同比例变化，Eₛ 恒为 1。','Measures the percentage response of quantity supplied to price. Easier production adjustment typically increases elasticity. A straight upward-sloping supply curve through the origin has unit elasticity.'],
+  key:['过原点的线性供给，Eₛ = 1。','Linear supply through the origin has Eₛ = 1.'],formula:'Eₛ = %ΔQs / %ΔP',
+  example:['同一条直线供给，正价格截距对应 Eₛ > 1，负价格截距对应 Eₛ < 1。','For linear supply, a positive price intercept gives Eₛ > 1 and a negative intercept gives Eₛ < 1.'],
+  trap:['这条过原点的结论限定为线性供给，不能套到任意弯曲供给线上。','The origin rule applies to linear supply, not every curved supply function.']},
+ {id:'midpoint',category:'elasticity',zh:'中点法',en:'Midpoint method',core:true,topic:'2.3',related:['ped','pes'],
+  detail:['把两端数量的平均值用作数量变化率的分母，把两端价格的平均值用作价格变化率的分母，再相除得到弧弹性。正向和反向计算会得到相同大小。','Calculate percentage quantity change relative to average quantity, and percentage price change relative to average price. Their ratio gives the same arc-elasticity magnitude in either direction.'],
+  key:['数量除平均数量，价格除平均价格。','Divide quantity change by average quantity and price change by average price.'],formula:'E = |[(Q₂ − Q₁) / Q̄] / [(P₂ − P₁) / P̄]|',
+  example:['P 从 10 到 12，Q 从 100 到 80。|%ΔP| = 2/11，|%ΔQ| = 20/90，E 约为 1.22。','From P 10 to 12 and Q 100 to 80, elasticity is (20/90)/(2/11), about 1.22.'],
+  trap:['一边用原值、另一边用平均值会算错。两点价格相同时，不能用这个比值计算弧弹性。','Use averages consistently. This ratio is undefined if the two prices are equal.']},
+ {id:'elastic',category:'elasticity',zh:'富有弹性、缺乏弹性与单位弹性',en:'Elastic, inelastic and unit elastic',core:true,topic:'2.3',related:['ped','pes','extremes'],
+  detail:['弹性大小大于 1 表示数量变化比例更大，小于 1 表示数量变化比例更小，等于 1 表示同比例变化。这是比例的比较，与曲线看起来陡或平的印象需要区分。','Elasticity above 1 means quantity responds proportionately more than price, below 1 means proportionately less, and exactly 1 means equally.'],
+  key:['以 1 为分界，比较数量反应的百分比。','Use 1 as the benchmark for proportional responsiveness.'],formula:'Elastic > 1  ·  Unit elastic = 1  ·  Inelastic < 1',
+  example:['价格变 5%，数量变 2%，E = 0.4，属于缺乏弹性。','A 5% price change and 2% quantity change give E = 0.4, which is inelastic.'],
+  trap:['单位弹性并不意味着是一条斜率为 1 的直线。','Unit elasticity does not mean a straight line with slope 1.']},
+ {id:'extremes',category:'elasticity',zh:'完全无弹性与完全有弹性',en:'Perfectly inelastic and perfectly elastic',core:false,topic:'2.3',related:['elastic','competition'],
+  detail:['完全无弹性用竖线表示，数量固定，E = 0。完全有弹性用水平线表示，在给定价格处可以有不同数量，弹性趋向无穷大。完全竞争企业面临的需求是水平的。','A vertical curve is perfectly inelastic, with fixed quantity and E = 0. A horizontal curve is perfectly elastic. A price-taking firm faces horizontal demand.'],
+  key:['竖线看固定数量，横线看给定价格。','Vertical fixes quantity. Horizontal fixes price.'],
+  example:['短期无法增加某场演唱会座位，可近似看作竖直供给。','A concert with a fixed seating capacity can have approximately vertical short-run supply.'],
+  trap:['完全竞争企业的需求水平，不代表整个市场需求也水平。','A competitive firm’s horizontal demand does not imply horizontal market demand.']},
+ {id:'income-elasticity',category:'elasticity',zh:'收入弹性',en:'Income elasticity of demand',abbr:'Eᵢ / YED',core:true,topic:'2.5',related:['normal','cross-elasticity'],
+  detail:['衡量收入改变时需求量的百分比反应，商品自身价格等条件固定。正号表示正常品，负号表示劣等品。正常品中，收入弹性大于 1 表示需求量增长比例超过收入。','Measures the percentage quantity response to income, holding own price and other determinants constant. A positive value indicates a normal good, and a negative value an inferior good.'],
+  key:['先看正负号，判断正常品或劣等品。','Read the sign first to distinguish normal and inferior goods.'],formula:'Eᵢ = %ΔQd / %ΔIncome',
+  example:['收入增加 10%，购买量减少 5%，Eᵢ = −0.5，是劣等品。','A 10% income increase with a 5% quantity fall gives Eᵢ = −0.5, an inferior good.'],
+  trap:['把负号去掉会丢失商品分类信息。','Taking the absolute value loses the classification.']},
+ {id:'cross-elasticity',category:'elasticity',zh:'交叉价格弹性',en:'Cross-price elasticity of demand',abbr:'Eₓᵧ / XED',core:true,topic:'2.5',related:['substitutes','income-elasticity'],
+  detail:['衡量另一种商品价格变化时，本商品需求量的百分比变化。正值表示替代品，负值表示互补品，零表示在这个关系中没有交叉价格反应。','Measures how the quantity demanded of one good responds to another good’s price. Positive indicates substitutes, negative complements, and zero no cross-price response.'],
+  key:['分子是 X 的数量，分母是 Y 的价格。','The numerator is X’s quantity change and the denominator Y’s price change.'],formula:'Eₓᵧ = %ΔQx / %ΔPy',
+  example:['咖啡价格增加 10%，茶需求量增加 6%，交叉价格弹性为 +0.6。','A 10% coffee-price rise that increases tea demand 6% gives cross-price elasticity +0.6.'],
+  trap:['数值 +0.6 的重点是正号说明替代关系，而不是把两件商品称为缺乏弹性。','For +0.6, the sign identifies substitutes. The key classification here is the relationship between goods.']},
+ {id:'tr',category:'elasticity',zh:'总收益',en:'Total revenue',abbr:'TR',core:true,topic:'2.3',related:['ped','mr','profit'],
+  detail:['销售商品获得的收入，统一定价时等于价格乘销量。价格改变同时影响每单位收入和销量，因此涨价未必提高总收益。需求富有弹性时，数量反应通常占主导。','Sales revenue equals price times quantity under uniform pricing. A price change affects both revenue per unit and sales volume, so a price rise need not raise revenue.'],
+  key:['需求富有弹性时，P 与 TR 反向；缺乏弹性时同向。','Price and TR move oppositely with elastic demand and together with inelastic demand.'],formula:'TR = P × Q',
+  example:['P 从 10 涨到 12，销量从 100 降到 70，TR 从 1000 降到 840。','Raising price from 10 to 12 while sales fall from 100 to 70 reduces TR from 1000 to 840.'],
+  trap:['总收益还没有扣成本。利润最大和总收益最大通常对应不同产量。','Revenue excludes cost deductions. Maximum revenue and maximum profit generally occur at different outputs.']},
+ {id:'cs',category:'welfare',zh:'消费者剩余',en:'Consumer surplus',abbr:'CS',core:true,topic:'2.6',related:['ps','total-surplus'],
+  detail:['消费者的支付意愿超过实际支付价格的部分。在供需图中，是实际交易量范围内，需求曲线下方、购买价格上方的面积。','The excess of willingness to pay over the price paid. In a supply-demand graph it is the area below demand and above the buyer’s price over units traded.'],
+  key:['需求曲线下，买方价格上。','Below demand and above the buyer’s price.'],
+  example:['你愿付 50 元，实际付 35 元，这一单位的消费者剩余是 15 元。','Willingness to pay $50 with an actual payment of $35 gives consumer surplus $15.'],
+  trap:['有税时用买方支付的价格 Pb。别把政府税收矩形也计入 CS。','With a tax, use the buyer’s price Pb. Government tax revenue is not consumer surplus.']},
+ {id:'ps',category:'welfare',zh:'生产者剩余',en:'Producer surplus',abbr:'PS',core:true,topic:'2.6',related:['cs','profit','fixed'],
+  detail:['实际获得的价格超过出售这些单位所需最低价格的部分。图中为卖方价格下方、供给曲线上方的面积。在标准短期竞争模型中，PS = TR − TVC。','The excess of revenue received over the minimum amount required to supply the traded units. In the standard short-run competitive model, PS equals TR minus variable cost.'],
+  key:['生产者剩余还没扣固定成本。','Producer surplus has not deducted fixed cost.'],formula:'PS = TR − TVC = Economic profit + TFC',
+  example:['TR = 500，TVC = 350，固定成本 100，PS = 150，但经济利润只有 50。','If TR is 500, TVC 350 and fixed cost 100, PS is 150 while economic profit is 50.'],
+  trap:['有税时用卖方收到的价格 Ps，而不是买方支付的 Pb。','With a tax, use the seller’s received price Ps, not the buyer’s price Pb.']},
+ {id:'total-surplus',category:'welfare',zh:'总剩余',en:'Total surplus',abbr:'TS',core:true,topic:'2.6',related:['cs','ps','dwl','allocative'],
+  detail:['市场参与者从交易中获得的净收益。无税的标准竞争模型中是 CS 与 PS 之和，有税时还需计入政府税收。外部成本和收益存在时，社会福利评价还要计入第三方影响。','Net gains from trade. In a standard market it equals CS plus PS, and with a tax also includes government revenue. Social evaluation must include external effects when present.'],
+  key:['比较社会福利时，把所有相关收益与成本都算进来。','Include all relevant gains and costs when comparing welfare.'],formula:'TS = CS + PS + Government revenue  (no external effects)',
+  example:['税收把一部分 CS 和 PS 转成政府收入，这个转移本身并非无谓损失。','A tax transfers some consumer and producer surplus into government revenue. The transfer itself is not deadweight loss.'],
+  trap:['最大总剩余描述效率，不直接判断分配是否公平。','Maximum total surplus describes efficiency, not necessarily fairness of distribution.']},
+ {id:'dwl',category:'welfare',zh:'无谓损失',en:'Deadweight loss',abbr:'DWL',core:true,topic:'2.8',related:['total-surplus','tax','externality'],
+  detail:['相对于有效率数量，某些应发生的互利交易未发生，或一些社会成本超过社会收益的单位被生产，导致的净社会收益损失。可由税收、市场势力或外部性等产生。','Lost net social gains relative to the efficient quantity. It can arise from missing beneficial trades or producing units whose social cost exceeds their social benefit.'],
+  key:['DWL 是净收益损失，转给别人的收入不是损失。','DWL is lost net benefit. A transfer to someone else is not itself a loss.'],formula:'DWL from a linear per-unit tax = ½ × tax × reduction in Q',
+  example:['单位税 4 元使交易量从 100 降至 80，线性供需下 DWL = 40 元。','A $4 tax reducing trade from 100 to 80 gives DWL $40 with linear curves.'],
+  trap:['矫正原有外部性的税可以减少原来的 DWL，不能断言所有税都降低效率。','A corrective tax can reduce preexisting externality losses. Taxes do not always reduce efficiency.']},
+ {id:'tax',category:'welfare',zh:'单位税与税负归宿',en:'Per-unit tax and tax incidence',core:true,topic:'2.8',related:['lump-sum','dwl','ped','pes'],
+  detail:['单位税在买卖双方价格之间造成楔子，Pb − Ps = t。经济负担由弹性决定，较缺乏弹性的一方通常承担更大比例。法律上由谁交税不决定最终负担。','A per-unit tax creates the wedge Pb − Ps = t. The relatively less elastic side generally bears more of the burden, regardless of which side remits the tax.'],
+  key:['税负看相对弹性，税收收入看税后成交量。','Incidence depends on relative elasticities. Revenue uses post-tax quantity.'],formula:'Pb − Ps = t  ·  Tax revenue = t × Qt',
+  example:['税前价格 10，税后买方付 13、卖方收 9，4 元税中买方承担 3、卖方承担 1。','From a pretax price 10 to Pb 13 and Ps 9, buyers bear 3 and sellers 1 of a tax of 4.'],
+  trap:['不要用税前数量计算政府收入，也不要把名义纳税人当成唯一承担者。','Use post-tax quantity for revenue and do not equate remittance with the full economic burden.']},
+ {id:'ceiling',category:'welfare',zh:'最高限价',en:'Price ceiling',core:true,topic:'2.8',related:['floor','shortage'],
+  detail:['法律允许的最高价格。在竞争市场中，低于均衡价格才有约束力，通常造成短缺。高于或等于原均衡价格时，市场仍可在原均衡处交易。','A legal maximum price. In a competitive market it binds below equilibrium and normally creates a shortage. At or above equilibrium, it does not constrain the original outcome.'],
+  key:['最高限价要“低”才约束市场。','A ceiling binds when it is below equilibrium.'],
+  example:['原均衡价格 100，限价 70 时，Qd 超过 Qs。若限价 130，原来的 100 仍合法。','With equilibrium price 100, a ceiling of 70 creates shortage. A ceiling of 130 leaves price 100 legal.'],
+  trap:['价格限制之外，谁拿到商品的配给方式也会影响实际总剩余。','The rationing rule determining who receives the goods also affects actual total surplus.']},
+ {id:'floor',category:'welfare',zh:'最低限价',en:'Price floor',core:true,topic:'2.8',related:['ceiling','surplus'],
+  detail:['法律允许的最低价格。竞争市场中高于均衡价格才有约束力，通常造成过剩。若政府不收购，企业愿售数量不等于消费者实际购买量。','A legal minimum price. It binds above competitive equilibrium and normally creates excess supply. Without government purchases, planned supply exceeds actual consumer purchases.'],
+  key:['最低限价要“高”才约束市场。','A floor binds when it is above equilibrium.'],
+  example:['均衡价 100，最低价 130 下 Qs = 110、Qd = 50，无政府收购时只能交易 50。','With a floor of 130, Qs 110 and Qd 50 imply only 50 trades without government purchases.'],
+  trap:['最低工资在竞争劳动市场与买方垄断劳动市场中的就业效果可能不同。','Minimum-wage employment effects can differ between competitive and monopsonistic labor markets.']},
+ {id:'trade-policy',category:'welfare',zh:'关税与进口配额',en:'Tariff and import quota',core:false,topic:'2.9',related:['dwl','cs','ps'],
+  detail:['小国进口模型中，世界价格低于自给价格时会进口。关税提高国内价格、增加国内生产、减少消费和进口。配额通过限制进口数量产生相似价格效果，但配额租金未必归政府。','In a small importing country, a tariff raises domestic price, expands domestic production and reduces consumption and imports. A quota restricts imports, but quota rents need not accrue to government.'],
+  key:['进口 = 国内需求量 − 国内供给量。','Imports equal domestic quantity demanded minus domestic quantity supplied.'],formula:'Tariff revenue = tariff per unit × imports after tariff',
+  example:['加税后消费者购买 90、国内生产 70，进口为 20。每单位税 5，政府收入 100。','After a tariff, demand 90 and domestic supply 70 imply imports 20. A tariff of 5 yields revenue 100.'],
+  trap:['关税高到完全阻止进口后，国内价格回到自给均衡，不能无限按 Pw + t 上升。','A prohibitive tariff restores autarky. Domestic price does not keep rising indefinitely with Pw + t.']},
+ {id:'subsidy',category:'welfare',zh:'单位补贴',en:'Per-unit subsidy',core:false,topic:'2.8',related:['tax','externality','total-surplus'],
+  detail:['政府按每单位交易支付补贴，使卖方获得的价格高于买方支付的价格。标准竞争市场中通常增加成交量。它既可能矫正正外部性，也可能使无市场失灵时的产量超过有效率水平。','A payment per unit traded creates a seller price above the buyer price and typically expands trade. It may correct a positive externality or induce overproduction in an otherwise efficient market.'],
+  key:['支出等于单位补贴乘补贴后的数量。','Government spending equals subsidy per unit times post-subsidy quantity.'],formula:'Ps − Pb = subsidy  ·  Spending = subsidy × Q',
+  example:['每单位补贴 3 元，成交 40 单位，政府支出 120 元。','A subsidy of 3 on 40 units costs the government 120.'],
+  trap:['补贴的财政支出与 DWL 是不同概念，福利分析要扣除政府支出并考虑外部收益。','Government spending differs from DWL. Welfare analysis deducts the spending and includes external benefits.']},
+ {id:'lump-sum',category:'welfare',zh:'固定税与单位税',en:'Lump-sum versus per-unit tax',core:true,related:['fixed','mc','tax','shutdown'],topic:'3.2',
+  detail:['固定税不随产量变动，标准成本模型中增加 TFC、AFC 和 ATC，不改变 MC 或 AVC。单位产量税每多生产一单位就多付税，因此提高 MC、AVC 和 ATC。','A lump-sum tax raises fixed cost, AFC and ATC without changing MC or AVC. A tax per unit produced raises MC, AVC and ATC.'],
+  key:['固定税看固定成本，单位税看边际成本。','Lump-sum taxes affect fixed cost. Per-unit taxes affect marginal cost.'],
+  example:['企业每年固定交 100 元执照费，对再生产一件商品的成本没有直接影响。','An unavoidable annual license fee does not directly change the cost of producing one more item.'],
+  trap:['在短期固定价格模型中，固定税可减少利润而不改变最优正产量；长期仍可能导致退出。','At a fixed price in the short run, a fixed tax may reduce profit without changing positive optimal output, yet cause long-run exit.']},
+ {id:'short-long',category:'costs',zh:'短期与长期',en:'Short run and long run',core:false,topic:'3.2',related:['fixed','scale'],
+  detail:['短期至少一种投入固定，长期所有投入都能调整。期限取决于投入调整的条件。长期企业可改变厂房规模，也可以进入或退出行业。','At least one input is fixed in the short run. All inputs can adjust in the long run, including plant size and entry or exit. The distinction depends on adjustment possibilities.'],
+  key:['看投入能否调整，不按固定天数划分。','Classify the period by input flexibility.'],example:['一家工厂一周内无法扩建，但可以加班，因此这一周是它的短期。','A factory unable to expand within a week but able to add shifts operates in the short run.'],
+  trap:['短期的固定投入，在长期也可以调整。','Inputs fixed in the short run can vary in the long run.']},
+ {id:'product',category:'costs',zh:'总产量与平均产量',en:'Total product and average product',abbr:'TP / AP',core:false,topic:'3.1',related:['mp','diminishing'],
+  detail:['TP 是给定投入下生产的总数量。AP 把总产量平均分配到每单位可变投入上。以劳动为可变投入时，AP = TP/L。','TP is total output from given inputs. AP is output per unit of variable input. With labor as the variable input, AP equals TP divided by L.'],
+  key:['总产量看整体，平均产量看每位工人。','TP measures the total. AP measures output per worker.'],formula:'AP = TP / L',example:['5 位工人生产 60 件，TP = 60，AP = 12。','Five workers producing 60 items give TP 60 and AP 12.'],
+  trap:['AP 是平均值，不能用它替代新增一位工人的 MP。','AP is an average and cannot replace the extra output measured by MP.']},
+ {id:'mp',category:'costs',zh:'边际产量',en:'Marginal product',abbr:'MP / MPL',core:false,topic:'3.1',related:['product','diminishing','mc'],
+  detail:['其他投入固定时，增加一单位某投入所增加的产量。MP 高于原平均产量会拉高 AP，低于原平均产量会拉低 AP。正但递减的 MP 仍会增加 TP。','Extra output from one more unit of an input, holding other inputs fixed. MP above the previous average raises AP, while MP below it lowers AP. Positive MP still raises TP.'],
+  key:['MP 下降不等于 TP 下降，MP 为负才减少 TP。','Falling MP does not imply falling TP. Negative MP reduces TP.'],formula:'MPL = ΔTP / ΔL',example:['第 5 人使总产量从 50 增至 58，第 5 人的 MP 为 8。','If the fifth worker increases TP from 50 to 58, that worker’s MP is 8.'],
+  trap:['使用表格时要比较相邻总产量的差，不是总产量除人数。','In a table, use differences between adjacent total outputs, not output divided by workers.']},
+ {id:'diminishing',category:'costs',zh:'边际报酬递减',en:'Diminishing marginal returns',core:true,topic:'3.1',related:['mp','scale','mc'],
+  detail:['至少一种投入固定时，持续增加可变投入，新增投入带来的额外产出最终会减少。这是短期的生产关系，资本等固定投入约束了新增劳动的发挥。','With some inputs fixed, successive additions of a variable input eventually yield smaller extra output. It is a short-run production relationship.'],
+  key:['从 MP 开始下降判断，而不是等到 TP 下降。','It starts when MP begins to fall, before TP necessarily falls.'],example:['厨房面积固定，越来越多厨师挤在一起，新增一人的出菜增量越来越少。','In a fixed-size kitchen, extra cooks eventually contribute progressively less additional output.'],
+  trap:['规模不经济讨论所有投入可调整的长期成本，两者的分析期限不同。','Diseconomies of scale concern long-run costs with all inputs variable.']},
+ {id:'fixed',category:'costs',zh:'固定成本',en:'Total fixed cost',abbr:'TFC / FC',core:true,topic:'3.2',related:['afc','variable','sunk'],
+  detail:['在短期内不随产量改变的成本。即使产量为零，只要该成本无法避免，企业仍需承担。它影响利润与 ATC，却不直接改变再生产一单位的 MC。','A short-run cost that does not vary with output. Unavoidable fixed costs remain at zero output. They affect profit and ATC but not marginal cost directly.'],
+  key:['TFC 不随 Q 变，AFC 会随 Q 变。','TFC stays constant as Q changes, but AFC changes.'],example:['本月已承诺的厂房租金是 1200 元，生产 0 件或 100 件都要交。','An unavoidable monthly rent of 1200 is paid whether output is zero or 100.'],
+  trap:['固定成本变化不直接移动 MC，不能只因为租金上升就移动 MC 曲线。','A fixed-cost increase does not directly shift MC.']},
+ {id:'variable',category:'costs',zh:'可变成本',en:'Total variable cost',abbr:'TVC / VC',core:false,topic:'3.2',related:['fixed','avc','tc'],
+  detail:['随产量变化的总成本，包括用于生产的可变投入。在标准成本模型中，不生产时 TVC 为零。把 TVC 除以产量得到 AVC。','Cost that varies with output through variable inputs. In the standard model, TVC is zero at zero output. Dividing TVC by Q gives AVC.'],
+  key:['先区分总可变成本 TVC 与每单位的 AVC。','Distinguish total variable cost from average variable cost.'],formula:'TVC = AVC × Q',example:['100 件产品每件可变成本 6 元，总可变成本为 600 元。','An AVC of 6 for 100 units gives TVC 600.'],
+  trap:['AVC 下降时 TVC 仍可能上升，因为产量在增长。','TVC can rise even when AVC falls because output increases.']},
+ {id:'tc',category:'costs',zh:'总成本',en:'Total cost',abbr:'TC',core:false,topic:'3.2',related:['fixed','variable','atc'],
+  detail:['固定成本与可变成本之和。经济利润分析中的总经济成本应包含显性和隐性机会成本。在总成本图中，TC 与 TVC 的垂直距离等于 TFC。','Fixed plus variable cost. Total economic cost includes explicit and implicit opportunity costs. The vertical gap between TC and TVC equals TFC.'],
+  key:['TC = TFC + TVC。','Total cost equals fixed cost plus variable cost.'],formula:'TC = TFC + TVC = ATC × Q',example:['固定成本 100，可变成本 240，总成本 340。','Fixed cost 100 and variable cost 240 give total cost 340.'],
+  trap:['算经济利润时，只扣现金支出会漏掉隐性成本。','Deducting only cash expenses omits implicit costs when calculating economic profit.']},
+ {id:'afc',category:'costs',zh:'平均固定成本',en:'Average fixed cost',abbr:'AFC',core:true,topic:'3.2',related:['fixed','atc','avc'],
+  detail:['把固定成本分摊到每单位产量。固定成本不变时，产量越大，每件分摊越少。因此 AFC 随 Q 增加而下降，并等于 ATC 与 AVC 的垂直距离。','Fixed cost per unit of output. With fixed cost unchanged, higher output spreads it across more units. AFC falls as Q rises and equals the gap between ATC and AVC.'],
+  key:['ATC − AVC = AFC，同一产量下比较。','At the same quantity, ATC minus AVC equals AFC.'],formula:'AFC = TFC / Q',example:['TFC = 120，Q 从 10 增到 20，AFC 从 12 降到 6。','For TFC 120, raising Q from 10 to 20 lowers AFC from 12 to 6.'],
+  trap:['AFC 递减本身不能证明长期规模经济。','Falling AFC alone does not establish long-run economies of scale.']},
+ {id:'avc',category:'costs',zh:'平均可变成本',en:'Average variable cost',abbr:'AVC',core:true,topic:'3.2',related:['atc','mc','shutdown'],
+  detail:['每单位产量分摊的可变成本。典型短期图中呈 U 形，MC 穿过它的最低点。完全竞争企业的短期停产门槛是最低 AVC。','Variable cost per unit. In the standard short-run graph it is U-shaped, with MC crossing at its minimum. Minimum AVC is the competitive firm’s shutdown price.'],
+  key:['短期先看 P 能不能覆盖 AVC。','In the short run, check whether price covers variable cost per unit.'],formula:'AVC = TVC / Q',example:['P = 15，AVC = 10，ATC = 18，企业虽然亏损，仍能补回部分固定成本。','At P 15, AVC 10 and ATC 18, a loss-making firm still recovers some fixed cost.'],
+  trap:['比较 P 与 AVC 要在选定的产量处读数。找最低 AVC 是为了确定停产价格。','Read P and AVC at the relevant output. Minimum AVC identifies the shutdown threshold.']},
+ {id:'atc',category:'costs',zh:'平均总成本',en:'Average total cost',abbr:'ATC',core:true,topic:'3.2',related:['avc','afc','mc','profit'],
+  detail:['每单位产量分摊的总经济成本。ATC = AVC + AFC。MC 低于 ATC 会拉低 ATC，高于 ATC 会拉高 ATC，因此 MC 穿过光滑 ATC 曲线的最低点。','Total economic cost per unit. It equals AVC plus AFC. MC below ATC pulls ATC down, while MC above ATC pulls it up. MC crosses smooth ATC at its minimum.'],
+  key:['P 与 ATC 的差是每单位利润，再乘 Q 得总利润。','The gap between P and ATC is profit per unit. Multiply by Q for total profit.'],formula:'ATC = TC / Q = AVC + AFC',example:['P = 30，ATC = 24，Q = 10，利润 = 60。','At P 30, ATC 24 and Q 10, profit is 60.'],
+  trap:['企业追求利润最大，最优产量一般不会恰好落在 ATC 最低点。','Profit-maximizing output need not minimize ATC.']},
+ {id:'mc',category:'costs',zh:'边际成本',en:'Marginal cost',abbr:'MC',core:true,topic:'3.2',related:['atc','avc','mr','mp'],
+  detail:['额外生产一单位增加的总成本。固定成本不会因多生产一件改变，因此 ΔTC = ΔTVC。劳动是唯一可变投入且工资固定时，MC = 工资 / MPL。','The extra total cost of another unit. Since fixed cost does not change with output, ΔTC equals ΔTVC. With labor as the only variable input and a fixed wage, MC equals wage divided by MPL.'],
+  key:['MC 穿过 AVC 与 ATC 各自的最低点。','MC crosses AVC and ATC at their respective minima.'],formula:'MC = ΔTC / ΔQ = ΔTVC / ΔQ',example:['TC 从 100 增至 118，Q 从 5 增至 6，第 6 件 MC = 18。','A TC increase from 100 to 118 as Q rises from 5 to 6 gives MC 18.'],
+  trap:['MC 是额外成本，ATC 是平均成本，读图时要区分两条曲线。','MC is extra cost and ATC is average cost. Keep the curves distinct.']},
+ {id:'scale',category:'costs',zh:'规模经济与规模不经济',en:'Economies and diseconomies of scale',core:false,topic:'3.3',related:['lratc','diminishing','afc'],
+  detail:['所有投入可调整时，产量扩张使 LRATC 下降称为规模经济，使其上升称为规模不经济。专业化可能降低平均成本，管理协调困难可能提高平均成本。','With all inputs adjustable, falling LRATC as output expands indicates economies of scale, and rising LRATC indicates diseconomies. Specialization and coordination costs help explain them.'],
+  key:['看长期平均成本随着产量怎么变。','Read how long-run average cost changes with output.'],example:['扩大厂房后每件成本从 20 降到 16，处在规模经济区间。','If adjusting plant size lowers average cost from 20 to 16 at higher output, this is economies of scale.'],
+  trap:['短期边际报酬递减与长期规模经济可以同时成立。','Short-run diminishing marginal returns and long-run economies of scale can coexist.']},
+ {id:'lratc',category:'costs',zh:'长期平均总成本',en:'Long-run average total cost',abbr:'LRATC / LRAC',core:false,topic:'3.3',related:['scale','mes'],
+  detail:['所有投入可调整时，每个产量能达到的最低平均成本。由不同规模厂房的短期平均成本曲线形成包络。它与某条 SRATC 相切的点未必是该 SRATC 的最低点。','The lowest attainable average cost at each output when all inputs can adjust. It forms the envelope of short-run plant cost curves. A tangency need not occur at an SRATC minimum.'],
+  key:['同一产量比较不同厂房，挑成本最低的。','At a given output, choose the plant with lowest average cost.'],example:['生产 40 件时小厂每件 25，大厂每件 18，长期可选择更合适的厂房。','At output 40, a plant costing 18 per unit is preferable to one costing 25.'],
+  trap:['“长期”允许调整规模，不能只沿一条既定厂房的 SRATC 走。','Long-run adjustment permits changing plant size, beyond movement along one existing SRATC.']},
+ {id:'mes',category:'costs',zh:'最低有效规模',en:'Minimum efficient scale',abbr:'MES',core:false,topic:'3.3',related:['lratc','natural-monopoly'],
+  detail:['LRATC 第一次达到其最低水平的最小产量。若最低成本存在一段平坦区间，MES 是这段的起点。它可帮助解释一个市场能容纳多少家有效率的企业。','The smallest output attaining minimum LRATC. If the minimum is a flat region, MES is its starting point. It helps explain how many efficient firms a market can support.'],
+  key:['找最低成本区间的最左端。','Find the leftmost quantity attaining minimum LRATC.'],example:['LRATC 在 Q = 35 至 60 都为 18，则 MES 是 35。','If LRATC is minimized from Q 35 to 60, MES is 35.'],
+  trap:['MES 不是产量最大的位置，也不是利润必定最大的位置。','MES is neither maximum capacity nor necessarily profit-maximizing output.']},
+ {id:'implicit',category:'costs',zh:'显性成本与隐性成本',en:'Explicit and implicit costs',core:true,topic:'3.4',related:['profit','opportunity'],
+  detail:['显性成本是为使用资源向外支付的费用。隐性成本是使用自有资源所放弃的最佳替代收益，如自有店面放弃的租金和经营者放弃的工资。经济成本两者都计入。','Explicit costs are payments for resources. Implicit costs are forgone returns from using owned resources, such as rent or wages sacrificed. Economic cost includes both.'],
+  key:['没有付现金，也可能有机会成本。','An opportunity cost can exist without a cash payment.'],example:['自有店面自己经营，虽不用付租金，仍放弃了每月可收的 2000 元租金。','Using an owned shop sacrifices the rent it could otherwise earn.'],
+  trap:['隐性成本不是沉没成本，接下来如何使用资源仍会改变放弃的收益。','Implicit costs are not automatically sunk. Future resource use can change the alternatives forgone.']},
+ {id:'mr',category:'firms',zh:'边际收益',en:'Marginal revenue',abbr:'MR',core:true,topic:'3.5',related:['tr','mc','competition','monopoly'],
+  detail:['额外售出一单位增加的总收益。完全竞争企业以固定价格卖出额外单位，因此 MR = P。统一定价且需求向下倾斜的企业增销量要降价，MR 通常低于 P。','The extra total revenue from another unit sold. A price taker has MR = P. For a uniform-price firm with downward-sloping demand, MR is typically below price.'],
+  key:['用 MR 与 MC 选择产量，再用需求或市场价格读 P。','Use MR and MC to choose quantity, then read the price.'],formula:'MR = ΔTR / ΔQ',example:['TR 从 500 增至 516，多卖一件的 MR 是 16。','If one more sale raises TR from 500 to 516, its MR is 16.'],
+  trap:['只有价格接受者可以直接把 P 当作 MR，一般垄断企业不能。','P equals MR for a price taker, not generally for a monopolist.']},
+ {id:'profit',category:'firms',zh:'经济利润与会计利润',en:'Economic and accounting profit',abbr:'π',core:true,topic:'3.4',related:['implicit','normal-profit','ps'],
+  detail:['会计利润从收入中扣显性成本，经济利润还要扣隐性机会成本。比较不同用途是否值得时，经济利润能反映资源最佳替代收益是否得到补偿。','Accounting profit deducts explicit costs. Economic profit also deducts implicit opportunity costs, showing whether the best alternative return to resources is covered.'],
+  key:['经济利润 = 会计利润 − 隐性成本。','Economic profit equals accounting profit minus implicit cost.'],formula:'π = TR − Total economic cost = (P − ATC) × Q',example:['TR = 1000，显性成本 650，隐性成本 400，会计利润 350，经济利润 −50。','Revenue 1000, explicit cost 650 and implicit cost 400 give accounting profit 350 and economic profit −50.'],
+  trap:['生产者剩余尚未扣固定成本，不能直接当经济利润。','Producer surplus excludes fixed-cost deductions and differs from economic profit.']},
+ {id:'normal-profit',category:'firms',zh:'正常利润与盈亏平衡',en:'Normal profit and break-even',core:true,topic:'3.6',related:['profit','shutdown'],
+  detail:['经济利润为零时，企业已经覆盖全部显性与隐性机会成本，获得正常利润。标准完全竞争成本图中，盈亏平衡价格等于最低 ATC。','Zero economic profit covers all explicit and implicit opportunity costs and earns normal profit. In the standard competitive model, break-even price equals minimum ATC.'],
+  key:['零经济利润意味着资源的机会成本都获补偿。','Zero economic profit covers the opportunity costs of resources.'],formula:'Break-even price = min ATC',example:['自营收入刚好补回现金支出与放弃的工资，仍可能值得经营。','A business covering cash outlays and the owner’s forgone wage can be worthwhile at zero economic profit.'],
+  trap:['正常利润不是零会计利润。经济利润为零时，会计利润通常用于补偿隐性成本。','Normal profit does not mean zero accounting profit. Accounting profit can compensate implicit costs.']},
+ {id:'shutdown',category:'firms',zh:'停产与退出',en:'Shutdown and exit',core:true,topic:'3.6',related:['avc','normal-profit','fixed'],
+  detail:['短期停产把产量降为零，仍承担无法避免的固定成本。长期退出允许离开行业。标准竞争模型里，P < min AVC 时停产，价格长期低于 min ATC 时退出。','Short-run shutdown sets output to zero while unavoidable fixed costs remain. Long-run exit leaves the industry. In the standard model, shutdown occurs below min AVC and sustained price below min ATC leads to exit.'],
+  key:['AVC < P < ATC 时，亏损但短期继续生产。','When AVC < P < ATC at the chosen output, produce at a loss in the short run.'],formula:'Shutdown threshold = min AVC',example:['P = 12，AVC = 9，ATC = 15，生产比停产多补回每件 3 元的固定成本。','With P 12, AVC 9 and ATC 15, production contributes 3 per unit toward fixed cost.'],
+  trap:['P = min AVC 时，生产与停产都亏固定成本，企业对二者无差异。','At P = min AVC, production and shutdown both lose fixed cost. The firm is indifferent.']},
+ {id:'competition',category:'firms',zh:'完全竞争',en:'Perfect competition',core:true,topic:'3.7',related:['mr','shutdown','allocative','productive'],
+  detail:['大量买卖者、同质商品、自由进出，单个企业是价格接受者。市场供需决定价格，企业面对水平的 d = MR = P。利润最大化的正产量在上升段 MC 与 MR 相交处，还须检查停产条件。','Many buyers and sellers trade identical goods with free entry and exit. A firm takes the market price and faces horizontal demand. Choose rising MC = MR and check shutdown.'],
+  key:['市场定价，企业选量。','The market sets price. The firm chooses quantity.'],formula:'P = MR = MC  (positive optimal output)',example:['市场需求增加先推高价格和短期利润，随后进入可能使供给增加。','Higher market demand initially raises price and profit, encouraging entry later.'],
+  trap:['长期零经济利润依赖自由进出等模型条件。不要把短期亏损直接等同于立即退出。','Long-run zero economic profit relies on the model’s assumptions. A short-run loss need not imply immediate exit.']},
+ {id:'monopoly',category:'firms',zh:'垄断',en:'Monopoly',core:true,related:['mr','barriers','natural-monopoly','dwl'],
+  detail:['市场中只有一个卖者且存在进入壁垒。统一定价时需求向下倾斜，MR 在需求线下方。先用 MR = MC 定产量，再到需求线读买家愿付的价格。','A single seller protected by entry barriers. Under uniform pricing, MR lies below downward-sloping demand. Choose quantity at MR = MC, then read price on demand.'],
+  key:['垄断先定 Q，再由 D 读 P。','For monopoly, determine Q first and then read P from demand.'],example:['MR = MC 在 Q = 20 相交，D 上 Q = 20 对应 P = 30，定价就是 30。','If MR = MC at Q 20 and demand gives P 30 there, the firm charges 30.'],
+  trap:['垄断者不能同时任意选择价格和销量，需求约束两者，也不保证一定盈利。','A monopolist cannot independently choose any price and quantity. Demand constrains both, and profit is not guaranteed.']},
+ {id:'natural-monopoly',category:'firms',zh:'自然垄断',en:'Natural monopoly',core:false,related:['monopoly','lratc','scale'],
+  detail:['市场相关需求范围内，单个企业生产全部产量的平均成本低于多个企业分摊生产的情形。通常与高固定成本和持续规模经济有关。监管按 MC 定价时可能无法覆盖 ATC。','One firm can serve the relevant market at lower average cost than multiple firms. High fixed cost and economies of scale are typical. Marginal-cost pricing may fail to cover ATC.'],
+  key:['规模经济持续覆盖市场需求范围。','Economies of scale extend across the relevant market demand.'],example:['铺设供水管网固定投入高，重复铺两套管网可能增加成本。','A water network has large fixed costs, and duplicating it can raise total cost.'],
+  trap:['“自然”描述成本结构，并不代表无需监管，也不等同于任何大企业。','Natural describes the cost structure, not the absence of regulation or simply a large firm.']},
+ {id:'monopolistic',category:'firms',zh:'垄断竞争',en:'Monopolistic competition',core:true,related:['competition','monopoly','barriers'],
+  detail:['很多企业提供差异化产品，进出相对自由。单个企业面临向下倾斜的需求。长期进入消除经济利润时，价格等于 ATC，但一般高于 MC，且产量小于最低 ATC 对应产量。','Many firms sell differentiated products with relatively free entry. Each faces downward-sloping demand. In long-run equilibrium P = ATC, but typically P > MC and output is below minimum-ATC output.'],
+  key:['长期可零利润，同时存在过剩产能。','Long-run zero profit can coexist with excess capacity.'],example:['不同餐馆靠口味和位置区分，吸引客人但仍面临其他餐馆进入。','Restaurants differentiate through taste and location while facing entry by rivals.'],
+  trap:['垄断竞争的长期零利润不意味着具备完全竞争的配置和生产效率。','Zero long-run profit does not imply the productive and allocative efficiency of perfect competition.']},
+ {id:'oligopoly',category:'firms',zh:'寡头与博弈',en:'Oligopoly and game theory',core:true,related:['monopoly','barriers'],
+  detail:['少数企业的决策互相影响，要考虑对手如何反应。纳什均衡中，给定他方策略，任何一方都不能单独改变策略获得更好结果。占优策略在所有对手策略下都给自己更好收益。','A few interdependent firms must consider rivals’ responses. In Nash equilibrium, no player gains by changing strategy alone. A dominant strategy is best regardless of the rival’s action.'],
+  key:['收益矩阵按“给定对手选择，我怎么选”来读。','Read a payoff matrix by fixing the rival’s action and finding your best response.'],example:['两家都想维持高价，但各自可能有单独降价吸引客户的动机。','Both firms may prefer high prices yet each may have an incentive to undercut.'],
+  trap:['纳什均衡未必使联合利润最大，也未必存在占优策略。','Nash equilibrium need not maximize joint profit or involve dominant strategies.']},
+ {id:'barriers',category:'firms',zh:'进入壁垒',en:'Barriers to entry',core:false,related:['monopoly','natural-monopoly','competition'],
+  detail:['使新企业难以进入市场的条件，包括专利、关键资源控制、法律许可和规模经济。壁垒可保护原有企业的市场势力，使超额经济利润更难被进入者消除。','Conditions that restrict entry, including patents, control of essential resources, legal restrictions and economies of scale. They can protect market power and sustain economic profit.'],
+  key:['先看新企业能否进入、扩产并争夺利润。','Ask whether new firms can enter and compete away profit.'],example:['受专利保护的药品在专利有效期间，竞争者不能自由生产同一专利产品。','Patent protection can prevent rivals from freely producing a patented drug during the patent term.'],
+  trap:['没有进入壁垒不意味着短期一定没有利润，进入需要时间。','Free entry does not rule out short-run profit. Entry takes time.']},
+ {id:'price-discrimination',category:'firms',zh:'价格歧视',en:'Price discrimination',core:false,related:['monopoly','cs','barriers'],
+  detail:['同一种商品按不同消费者或购买条件收取不同价格，差价由支付意愿等因素形成。通常需要市场势力、可区分顾客和限制转售。完全价格歧视的模型把每单位价格设为其支付意愿。','Charging different buyers different prices not explained by cost differences. It generally requires market power, buyer separation and limited resale. Perfect discrimination charges each unit its willingness to pay.'],
+  key:['先判断企业能否区分买家并限制转售。','Check whether buyers can be separated and resale limited.'],example:['按学生身份提供可核验的电影票折扣，可能属于群体价格歧视。','A verifiable student ticket discount can be group-based price discrimination.'],
+  trap:['成本不同导致的差价不能直接认定为价格歧视。完全价格歧视可消除标准垄断模型的产量损失，但消费者剩余被转走。','Cost-based price differences do not establish discrimination. Perfect discrimination can remove the standard monopoly output loss while transferring consumer surplus.']},
+ {id:'profit-max',category:'firms',zh:'利润最大化',en:'Profit maximization',core:true,topic:'3.5',related:['mr','mc','shutdown','profit'],
+  detail:['选择使 TR 与 TC 差额最大的产量。若 MR > MC，多一单位提高利润；若 MR < MC，多一单位减少利润。在连续、常规成本模型中，候选最优点在上升段 MC 与 MR 的交点，还要与零产量比较。','Choose output maximizing TR minus TC. If MR exceeds MC, expansion adds profit. In the standard continuous model, use rising MC = MR as a candidate and compare it with zero output.'],
+  key:['先选最优 Q，再检查生产是否优于停产。','Choose optimal Q, then check whether production beats shutdown.'],formula:'π = TR − TC  ·  Candidate optimum at rising MC = MR',example:['P = MR = 15，交点处 AVC = 10、ATC = 18，最优决策可为亏损生产。','If P = MR = 15 with AVC 10 and ATC 18 at the crossing, producing at a loss can be optimal.'],
+  trap:['MR = MC 不保证利润为正，也不能单独排除停产。','MR = MC does not guarantee positive profit or rule out shutdown.']},
+ {id:'derived',category:'factors',zh:'引致需求',en:'Derived demand',core:false,related:['mrp','labor-market'],
+  detail:['企业对劳动、土地等投入的需求，来自这些投入生产的产品能带来的收益。产品需求上升或劳动生产率提高，都可能使劳动需求增加。','Demand for an input comes from the revenue generated by the output it helps produce. Higher product demand or worker productivity can increase labor demand.'],
+  key:['先看产品市场，再看投入需求。','Trace input demand back to the product market.'],example:['面包需求增加可能提高面包店对烘焙师的需求。','Greater demand for bread can raise bakeries’ demand for bakers.'],
+  trap:['工资自身变动通常是沿劳动需求线移动，而产品需求变动可以移动劳动需求。','A wage change usually moves along labor demand, while a product-demand change can shift it.']},
+ {id:'mrp',category:'factors',zh:'边际收益产品',en:'Marginal revenue product',abbr:'MRP / MRPL',core:true,related:['mp','mr','mrc','derived'],
+  detail:['增加一单位投入为企业增加的总收益。劳动的 MRPL = MPL × MR。产品市场完全竞争时，MR = P，可以写成 MPL × P。','The extra total revenue from another unit of an input. For labor, MRPL = MPL × MR. In a competitive output market, MR = P.'],
+  key:['劳动创造的额外产量，要乘每单位产量的边际收益。','Multiply extra output by marginal revenue per output unit.'],formula:'MRPL = MPL × MR',example:['新工人增加 5 件产出，每件 MR 为 8 元，MRPL = 40 元。','A worker adding 5 units with MR 8 produces MRPL 40.'],
+  trap:['产品市场不完全竞争时，不能直接把 P 代替 MR。','In an imperfectly competitive output market, do not replace MR with P.']},
+ {id:'mrc',category:'factors',zh:'边际要素成本',en:'Marginal resource cost',abbr:'MRC / MFC',core:true,related:['mrp','monopsony','labor-market'],
+  detail:['多雇一单位投入增加的总投入成本。竞争劳动市场企业面对既定工资，MRC = 工资。统一工资的买方垄断企业要吸引更多工人，可能也得给原有工人加薪，因此 MRC 高于劳动供给曲线。','The extra resource cost of another input unit. For a competitive employer MRC equals the wage. For a single-wage monopsonist, hiring more can raise existing workers’ wages, making MRC exceed supply.'],
+  key:['企业按 MRP 与 MRC 比较，决定雇用量。','Choose employment by comparing MRP with MRC.'],formula:'MRC = ΔTotal resource cost / ΔInput',example:['总工资支出从 200 增至 250，多雇 1 人的 MRC 是 50。','A payroll increase from 200 to 250 for one extra worker gives MRC 50.'],
+  trap:['边际雇工成本可能高于新工人拿到的工资。','The marginal hiring cost can exceed the new worker’s wage.']},
+ {id:'labor-market',category:'factors',zh:'竞争劳动市场',en:'Competitive labor market',core:false,related:['mrp','mrc','monopsony'],
+  detail:['市场劳动供求决定工资，单个企业是工资接受者，面对水平的劳动供给与 MRC。企业选择 MRP = MRC 的劳动量。劳动市场图横轴为劳动量，纵轴为工资或每单位劳动的收益与成本。','Market labor supply and demand set the wage. A wage-taking firm faces horizontal input supply and MRC, and chooses labor where MRP equals MRC.'],
+  key:['市场决定工资，企业决定雇多少人。','The labor market sets the wage. The firm chooses employment.'],formula:'MRPL = MRC = Wage  (interior optimum)',example:['工资为 30，新工人的 MRPL 为 40，雇用可增加利润，直到边际比较不再有利。','At wage 30, a worker with MRPL 40 adds to profit. Hiring continues until the marginal comparison no longer favors expansion.'],
+  trap:['产品市场是否竞争与劳动市场是否竞争，是两个不同假设。','Competition in the product market and competition in the labor market are separate assumptions.']},
+ {id:'monopsony',category:'factors',zh:'买方垄断',en:'Monopsony',core:true,related:['mrc','labor-market','floor'],
+  detail:['一种投入市场只有一个主要买家。劳动买方垄断企业面临向上倾斜的劳动供给，按 MRP = MRC 定雇用量，再从劳动供给线读该数量所需的工资。','A single buyer dominates an input market. In labor monopsony, choose employment where MRP equals MRC, then read the wage from labor supply.'],
+  key:['先用 MRC 定 L，再回供给线读工资。','Use MRC to choose L, then read wage on supply.'],example:['单一雇主地区，吸引更多工人需要提高统一工资，MRC 会高于工资。','A dominant local employer may need to raise the common wage to attract workers, putting MRC above the wage.'],
+  trap:['适当的最低工资在买方垄断模型里可能同时提高工资与就业，需看设置范围。','An appropriately set minimum wage can increase both pay and employment in monopsony. The level matters.']},
+ {id:'factor-supply',category:'factors',zh:'要素供给',en:'Factor supply',core:false,related:['labor-market','derived'],
+  detail:['要素所有者在不同报酬下愿意提供的投入数量。劳动供给由家庭决定，劳动需求由雇主决定。人口、偏好与其他工作的机会都能影响劳动供给。','The input quantity its owners offer at different returns. Households supply labor and employers demand it. Population, preferences and alternative job opportunities affect supply.'],
+  key:['商品市场里家庭买商品，要素市场里家庭卖劳动。','Households buy goods in product markets and supply labor in factor markets.'],example:['更多有资格的工人进入某地区，可使该地区劳动供给右移。','An inflow of qualified workers can shift local labor supply right.'],
+  trap:['最低工资是工资限制，不能把它直接当成劳动需求增加。','A minimum wage is a wage constraint, not an increase in labor demand.']},
+ {id:'rent',category:'factors',zh:'经济租金',en:'Economic rent',core:false,related:['opportunity','factor-supply'],
+  detail:['要素实际报酬超过使该要素留在当前用途所需最低报酬的部分。要素供给越缺乏弹性，报酬中可能有更大的租金部分。','Payment to a factor above the minimum needed to keep it in its current use. Less elastic supply can create a larger rent component.'],
+  key:['实际报酬减去留住所需的最低报酬。','Subtract the minimum required payment from actual payment.'],example:['某工人最低接受 100 元，但实际拿 140 元，这个简化例子里的经济租金为 40 元。','If a worker needs 100 to remain in the job but receives 140, economic rent in this simplified example is 40.'],
+  trap:['经济租金不限于租房收入，它描述的是超过机会成本的报酬。','Economic rent is not limited to property rent. It is payment above opportunity cost.']},
+ {id:'allocative',category:'failure',zh:'配置效率',en:'Allocative efficiency',core:true,topic:'2.6',related:['productive','externality','total-surplus'],
+  detail:['社会最后一单位的边际收益等于边际成本，总净收益最大。在没有外部性等失灵的标准竞争模型中可用 P = MC 表示。存在外部性时，应比较 MSB 与 MSC。','At the efficient quantity, marginal social benefit equals marginal social cost, maximizing net social gains. Without external effects, competitive P = MC represents this condition.'],
+  key:['社会最优看 MSB = MSC。','Social efficiency requires MSB = MSC.'],formula:'MSB = MSC',example:['少生产一件会错过收益大于成本的交易，多生产一件则成本超过收益。','Producing less misses a beneficial unit. Producing more adds a unit costing more than its benefit.'],
+  trap:['P = MC 依赖价格与成本正确反映社会边际收益和成本。','P = MC requires prices and costs to reflect social marginal benefits and costs.']},
+ {id:'productive',category:'failure',zh:'生产效率',en:'Productive efficiency',core:true,topic:'1.3',related:['allocative','atc','ppc'],
+  detail:['在 PPC 上表示给定资源与技术时，不能增加一种产出而不减少另一种。企业成本图常用在最低 ATC 生产来体现最低单位成本。选择生产什么则还涉及配置效率。','On a PPC, output cannot increase for one good without reducing another. In firm cost diagrams, production at minimum ATC represents lowest unit cost. Allocative efficiency additionally concerns what to produce.'],
+  key:['有效地生产，与生产社会最想要的组合，要分开判断。','Separate efficient production from choosing the socially preferred mix.'],example:['PPC 上每点都有生产效率，但不同点生产的两种商品比例不同。','All points on a PPC are productively efficient, while their output mixes differ.'],
+  trap:['在 PPC 上不自动意味着配置最优，也不说明收入分配公平。','Being on the PPC does not establish allocative efficiency or fairness.']},
+ {id:'externality',category:'failure',zh:'外部性',en:'Externality',core:true,related:['msc','msb','dwl','corrective'],
+  detail:['生产或消费影响了没有通过市场价格得到补偿的第三方。负外部性给第三方造成成本，正外部性给第三方带来收益，导致私人决策与社会最优之间出现差距。','An uncompensated effect on third parties from production or consumption. Negative externalities impose external costs and positive externalities create external benefits.'],
+  key:['先找第三方，再确定多了社会成本还是社会收益。','Identify the third party, then distinguish external cost from external benefit.'],example:['工厂污染使附近居民承担健康成本，而产品价格没有包含这部分损失。','Factory pollution imposes health costs on neighbors that are not included in the product price.'],
+  trap:['存在第三方效应时，单看私人供需交点会漏掉社会成本或收益。','The private supply-demand crossing omits external costs or benefits.']},
+ {id:'msc',category:'failure',zh:'边际社会成本',en:'Marginal social cost',abbr:'MSC / MPC / MEC',core:true,related:['externality','msb','corrective'],
+  detail:['生产额外一单位让全社会承担的额外成本，等于私人边际成本与外部边际成本之和。负生产外部性模型中，MSC 在 MPC 上方，市场通常生产过多。','The total extra cost to society of one more unit, equal to private marginal cost plus external marginal cost. With a negative production externality, MSC exceeds MPC and private output is typically excessive.'],
+  key:['负生产外部性把社会成本线抬到私人成本线上方。','A negative production externality places MSC above MPC.'],formula:'MSC = MPC + MEC',example:['每件私人成本 8，外部污染成本 3，MSC = 11。','Private marginal cost 8 plus external marginal cost 3 gives MSC 11.'],
+  trap:['不能把外部成本再同时加在需求线上，否则会重复计算同一个影响。','Do not add the same external cost to another curve as well, which would double-count it.']},
+ {id:'msb',category:'failure',zh:'边际社会收益',en:'Marginal social benefit',abbr:'MSB / MPB / MEB',core:true,related:['externality','msc','subsidy'],
+  detail:['消费额外一单位给全社会带来的额外收益，等于私人边际收益加外部边际收益。正消费外部性下，MSB 高于 MPB，私人市场通常消费不足。','The extra benefit to society of another unit consumed, equal to private plus external marginal benefit. With a positive consumption externality, MSB exceeds MPB and private consumption is typically too low.'],
+  key:['正消费外部性使社会收益超过私人收益。','A positive consumption externality makes social benefit exceed private benefit.'],formula:'MSB = MPB + MEB',example:['疫苗既保护接种者，也降低他人感染风险，存在外部收益。','Vaccination benefits the recipient and can reduce infection risks for others.'],
+  trap:['市场需求通常反映私人支付意愿，不能自动当作包含全部外部收益的 MSB。','Market demand normally reflects private willingness to pay, not all external benefits.']},
+ {id:'corrective',category:'failure',zh:'矫正税与矫正补贴',en:'Corrective tax and subsidy',core:true,related:['msc','msb','tax','subsidy'],
+  detail:['用政策把私人激励朝社会最优调整。标准模型里，在社会最优数量处设置等于外部边际成本的单位税，可内化负外部性；正外部性可用相应单位补贴鼓励。','Policies align private incentives with social efficiency. In a standard model, a unit tax equal to marginal external cost at the efficient quantity internalizes a negative externality. Subsidies can address positive externalities.'],
+  key:['政策目标是让私人决策者面对完整的社会边际影响。','Make private decisions account for the full marginal social effect.'],example:['最优产量处污染的边际外部成本为 4 元，可设置每件 4 元的矫正税。','If marginal external cost at efficient output is 4, a corrective unit tax of 4 can implement that output.'],
+  trap:['矫正税用最优产量处的边际外部成本，不能用总外部成本代替。','Use marginal external cost at the efficient quantity, not total external cost.']},
+ {id:'goods',category:'failure',zh:'公共品与共有资源',en:'Public goods and common resources',core:true,related:['free-rider','externality'],
+  detail:['公共品既非排他又非竞争，难以阻止未付钱者使用，一人的使用也不减少他人可用量。共有资源同样难排他，但使用有竞争性，一人多用会减少别人可用量。','Public goods are nonexcludable and nonrival. Common resources are nonexcludable but rival, so one person’s use reduces availability to others.'],
+  key:['先看能否排除，再看使用会不会挤占。','Check excludability first, then rivalry.'],example:['国防常作为公共品例子。开放渔场里的鱼会被捕走，属于共有资源。','National defense is a typical public good. Fish in an open fishery are rival and form a common resource.'],
+  trap:['“政府提供”不是公共品的定义，拥挤道路等也要考虑竞争性。','Government provision is not the definition of a public good. Congestion can make use rival.']},
+ {id:'free-rider',category:'failure',zh:'搭便车问题',en:'Free-rider problem',core:false,related:['goods','total-surplus'],
+  detail:['人们可以不付钱也享受非排他性商品，于是有动机让别人出钱，市场难以充分筹集资金。即使大家的总支付意愿超过供给成本，私人供给也可能不足。','When a good is nonexcludable, people can benefit without paying and have an incentive to let others fund it. Private provision can be insufficient even when total willingness to pay exceeds cost.'],
+  key:['无法排除不付钱的人，削弱自愿付费激励。','Nonexcludability weakens incentives for voluntary payment.'],example:['每家都希望别人付费建设社区防洪设施，自己也能受益。','Households may hope others will pay for flood protection from which all benefit.'],
+  trap:['共有资源更常见的另一问题是过度使用，需与公共品供给不足区分。','Common resources face overuse, which differs from the underprovision of public goods.']},
+ {id:'inequality',category:'failure',zh:'洛伦兹曲线与基尼系数',en:'Lorenz curve and Gini coefficient',core:false,related:['allocative'],
+  detail:['洛伦兹曲线将人群按收入从低到高排序，用人口累计占比对应收入累计占比。离完全平等线越远，收入分配通常越不均。基尼系数量化这段偏离。','The Lorenz curve orders people from lowest to highest income and plots cumulative population against cumulative income. Greater distance below the equality line indicates more inequality. The Gini coefficient summarizes it.'],
+  key:['横轴人口累计占比，纵轴收入累计占比。','Horizontal is cumulative population share. Vertical is cumulative income share.'],formula:'Gini = Area between equality line and Lorenz curve / Area below equality line',example:['最穷的 40% 人口获得 15% 总收入，对应点为 (40%, 15%)。','If the poorest 40% receive 15% of income, the curve includes (40%, 15%).'],
+  trap:['基尼越大代表更不均。收入分配不均与平均收入高低是两个不同维度。','A higher Gini means more inequality. Inequality and average income are different dimensions.']}
+];
+
+const glossaryById=new Map(glossaryTerms.map(term=>[term.id,term]));
+const glossaryState={category:'all',filter:'all',query:'',selected:'opportunity'};
+let glossaryLayer,glossaryEntry,glossaryFromChart=false,glossaryTrigger;
+const glossaryText=pair=>pair[lang==='zh'?0:1];
+const glossaryTitle=term=>lang==='zh'?term.zh:term.en;
+const glossarySecondary=term=>lang==='zh'?term.en:term.zh;
+const glossaryNormalize=value=>value.normalize('NFKC').toLowerCase().replace(/[\s_\-−–/]/g,'');
+
+function glossaryMatches(){
+  const query=glossaryNormalize(glossaryState.query.trim());
+  const matches=glossaryTerms.filter(term=>
+    (glossaryState.category==='all'||term.category===glossaryState.category)&&
+    (glossaryState.filter!=='core'||term.core)&&
+    (glossaryState.filter!=='formula'||term.formula)&&
+    (!query||glossaryNormalize([term.zh,term.en,term.abbr||'',term.formula||'',...term.detail,...term.key].join(' ')).includes(query)));
+  if(!query)return matches;
+  const rank=term=>{
+    const names=[term.zh,term.en,...(term.abbr||'').split(' / ')].map(glossaryNormalize);
+    if(names.includes(query))return 0;
+    return names.some(name=>name.includes(query))?1:2;
+  };
+  return matches.sort((a,b)=>rank(a)-rank(b));
+}
+
+function glossaryArticle(term){
+  const category=glossaryCategories.find(item=>item.id===term.category);
+  const section=(title,body,className='')=>`<section class="vocab-section ${className}"><h3>${title}</h3><p>${esc(body)}</p></section>`;
+  return `<div class="vocab-reading-head"><span>${glossaryText(category.name)} · UNIT ${category.unit}</span><span>${term.core?T('重点','Core'):T('延伸理解','Build understanding')}</span></div>
+    <h2 id="vocabTermTitle" tabindex="-1">${esc(glossaryTitle(term))}</h2>
+    <p class="vocab-translation">${esc(glossarySecondary(term))}${term.abbr?`<span>${esc(term.abbr)}</span>`:''}</p>
+    <div class="vocab-key"><span>${T('划重点','Remember')}</span><p><mark>${esc(glossaryText(term.key))}</mark></p></div>
+    ${section(T('理解这个词','Understand the term'),glossaryText(term.detail))}
+    ${term.formula?`<section class="vocab-formula"><h3>${T('公式与关系','Formula & relationship')}</h3><p>${esc(term.formula)}</p></section>`:''}
+    ${section(T('放到例子里','An example'),glossaryText(term.example))}
+    ${section(T('容易混淆','Watch the distinction'),glossaryText(term.trap),'vocab-pitfall')}
+    <section class="vocab-related"><h3>${T('联系着记','Connect the ideas')}</h3><div>${term.related.map(id=>{
+      const related=glossaryById.get(id);
+      return `<button type="button" data-vocab-related="${id}">${esc(glossaryTitle(related))}<span aria-hidden="true">↗</span></button>`;
+    }).join('')}</div></section>
+    ${term.topic?`<button type="button" class="vocab-chart-link" data-vocab-chart="${term.topic}">${T('到图表里试一试','Explore the chart')}<span>${term.topic} ${esc(topics[term.topic][lang==='zh'?0:1])} →</span></button>`:''}`;
+}
+
+function glossaryPaintArticle({focus=false,motion=true}={}){
+  const article=glossaryLayer.querySelector('.vocab-reading');
+  const term=glossaryById.get(glossaryState.selected);
+  if(term)article.setAttribute('aria-labelledby','vocabTermTitle');
+  else article.removeAttribute('aria-labelledby');
+  article.innerHTML=term?glossaryArticle(term):`<div class="vocab-no-selection"><span aria-hidden="true">Aa</span><p>${T('换个关键词，继续查词。','Try another search to find a term.')}</p></div>`;
+  article.scrollTop=0;
+  for(const button of glossaryLayer.querySelectorAll('[data-vocab-term]')){
+    const selected=button.dataset.vocabTerm===glossaryState.selected;
+    button.setAttribute('aria-pressed',String(selected));
+  }
+  if(motion&&!reducedMotion()&&article.animate)article.animate(
+    [{opacity:.3,filter:'blur(3px)',transform:'translateY(4px)'},{opacity:1,filter:'blur(0)',transform:'translateY(0)'}],
+    {duration:190,easing:'ease-out'});
+  if(focus)article.querySelector('h2')?.focus({preventScroll:true});
+}
+
+function glossaryPaintList(){
+  const matches=glossaryMatches();
+  if(!matches.some(term=>term.id===glossaryState.selected))glossaryState.selected=matches[0]?.id||null;
+  glossaryLayer.querySelector('.vocab-results').textContent=T(`${matches.length} 个词条`,`${matches.length} terms`);
+  const list=glossaryLayer.querySelector('.vocab-term-list');
+  list.innerHTML=matches.length?matches.map(term=>`<button type="button" data-vocab-term="${term.id}" aria-pressed="${term.id===glossaryState.selected}">
+    <span class="vocab-term-top"><b>${esc(glossaryTitle(term))}</b>${term.core?`<i>${T('重点','Core')}</i>`:''}</span>
+    <span class="vocab-term-english">${esc(glossarySecondary(term))}</span>${term.abbr?`<span class="vocab-abbr">${esc(term.abbr)}</span>`:''}</button>`).join(''):
+    `<p class="vocab-empty">${T('没有匹配的词。试试中文、英文或缩写，或者重置筛选。','No matches. Try Chinese, English or an abbreviation, or reset the filters.')}<button type="button" data-vocab-clear>${T('重置筛选','Reset filters')}</button></p>`;
+  list.scrollTop=0;
+  for(const button of glossaryLayer.querySelectorAll('[data-vocab-category]'))button.setAttribute('aria-pressed',String(button.dataset.vocabCategory===glossaryState.category));
+  for(const button of glossaryLayer.querySelectorAll('[data-vocab-filter]'))button.setAttribute('aria-pressed',String(button.dataset.vocabFilter===glossaryState.filter));
+  glossaryPaintArticle({motion:false});
+}
+
+function glossaryRender(){
+  glossaryLayer.innerHTML=`<div class="vocab-shell">
+    <header class="vocab-header"><button class="back-btn" type="button" data-vocab-close aria-label="${T('返回首页','Back to home')}"><span aria-hidden="true">←</span></button>
+      <div><span class="vocab-eyebrow">MICROECONOMICS / GLOSSARY</span><h1>${T('微观词汇表','Microeconomics glossary')}</h1></div>
+      <div class="lang-toggle" role="group" aria-label="${T('语言','Language')}"><button type="button" data-vocab-lang="zh" aria-pressed="${lang==='zh'}">中文</button><button type="button" data-vocab-lang="en" aria-pressed="${lang==='en'}">EN</button></div>
+    </header>
+    <div class="vocab-tools"><label class="vocab-search"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+      <input type="search" data-vocab-search aria-label="${T('搜索微观词汇','Search economics terms')}" placeholder="${T('搜中文、英文或缩写，如 机会成本 / MC','Search Chinese, English or abbreviations, e.g. MC')}" value="${esc(glossaryState.query)}" autocomplete="off"></label>
+      <div class="vocab-filters" role="group" aria-label="${T('词条筛选','Filter terms')}">${[['all',T('全部词汇','All terms')],['core',T('只看重点','Core terms')],['formula',T('公式关系','Formulas')]].map(([id,title])=>`<button type="button" data-vocab-filter="${id}">${title}</button>`).join('')}</div>
+    </div>
+    <div class="vocab-workspace"><nav class="vocab-categories" aria-label="${T('词汇分类','Term categories')}">
+      <button type="button" data-vocab-category="all"><span>${T('全部分类','All categories')}</span><small>${glossaryTerms.length}</small></button>
+      ${glossaryCategories.map((category,i)=>`<button type="button" data-vocab-category="${category.id}"><span><em>${String(i+1).padStart(2,'0')}</em>${glossaryText(category.name)}</span><small>${glossaryTerms.filter(term=>term.category===category.id).length}</small></button>`).join('')}
+      <p class="vocab-source"><a href="https://apcentral.collegeboard.org/media/pdf/ap-microeconomics-course-and-exam-description.pdf" target="_blank" rel="noopener noreferrer">${T('AP 课程框架 ↗','AP course framework ↗')}</a></p>
+    </nav>
+    <section class="vocab-index" aria-label="${T('词条列表','Term list')}"><div class="vocab-index-head"><span class="vocab-results" role="status" aria-live="polite"></span><span>ZH / EN</span></div><div class="vocab-term-list"></div></section>
+    <article class="vocab-reading" aria-labelledby="vocabTermTitle"></article></div>
+    <button type="button" class="vocab-list-return" data-vocab-list>← ${T('返回词条列表','Back to terms')}</button>
+  </div>`;
+  glossaryPaintList();
+}
+
+function openGlossary(trigger=glossaryEntry){
+  glossaryTrigger=trigger;
+  document.getElementById('homeScreen').inert=true;
+  glossaryLayer.hidden=false;
+  document.title=T('微观词汇表 · AP 微观图表','Microeconomics glossary · AP Micro Charts');
+  if(!glossaryLayer.firstElementChild)glossaryRender();
+  glossaryLayer.querySelector('[data-vocab-close]').focus({preventScroll:true});
+  if(!reducedMotion()&&glossaryLayer.animate)glossaryLayer.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
+}
+
+function closeGlossary(){
+  glossaryLayer.hidden=true;
+  document.getElementById('homeScreen').inert=false;
+  document.title=T('AP 微观图表','AP Micro Charts');
+  glossaryTrigger?.focus({preventScroll:true});
+}
+
+function setupGlossary(){
+  const home=document.querySelector('#homeScreen .home');
+  glossaryEntry=document.createElement('button');
+  glossaryEntry.type='button';
+  glossaryEntry.className='vocab-entry';
+  glossaryEntry.setAttribute('aria-label','微观词汇表 / Microeconomics glossary');
+  glossaryEntry.innerHTML=`<div class="vocab-entry-copy"><span class="vocab-eyebrow">THE ECONOMICS LEXICON</span><h2><span class="lang-zh">微观词汇表</span><span class="lang-en">Microeconomics glossary</span></h2>
+    <p><span class="lang-zh">中英对照，连起公式、图表和易混概念。</span><span class="lang-en">Connect the words, formulas and ideas behind each graph.</span></p>
+    <span class="vocab-entry-meta"><span class="lang-zh">${glossaryCategories.length} 类概念 · ${glossaryTerms.length} 个词条</span><span class="lang-en">${glossaryCategories.length} categories · ${glossaryTerms.length} terms</span><b aria-hidden="true">↗</b></span></div>
+    <div class="vocab-entry-art" aria-hidden="true"><span>opportunity cost</span><strong>MC <i>↔</i> ATC</strong><span>marginal · equilibrium · surplus</span><mark>理解 / connect</mark></div>`;
+  home.querySelector('.home-head').after(glossaryEntry);
+  glossaryLayer=document.createElement('section');
+  glossaryLayer.id='econGlossary';glossaryLayer.hidden=true;
+  glossaryLayer.setAttribute('aria-label','微观词汇表 / Microeconomics glossary');
+  document.body.append(glossaryLayer);
+  glossaryEntry.addEventListener('click',()=>openGlossary());
+  glossaryLayer.addEventListener('input',event=>{
+    if(!event.target.matches('[data-vocab-search]'))return;
+    glossaryState.query=event.target.value;
+    glossaryLayer.classList.remove('vocab-show-reading');
+    glossaryPaintList();
+  });
+  glossaryLayer.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();closeGlossary();}});
+  glossaryLayer.addEventListener('click',event=>{
+    const button=event.target.closest('button');if(!button)return;
+    if(button.hasAttribute('data-vocab-close'))return closeGlossary();
+    if(button.hasAttribute('data-vocab-list')){
+      glossaryLayer.classList.remove('vocab-show-reading');
+      glossaryLayer.querySelector(`[data-vocab-term="${glossaryState.selected}"]`)?.focus({preventScroll:true});
+      return;
+    }
+    if(button.dataset.vocabLang){document.querySelector(`#homeLangToggle [data-lang="${button.dataset.vocabLang}"]`).click();return;}
+    if(button.dataset.vocabChart){
+      glossaryFromChart=true;glossaryLayer.hidden=true;
+      show(button.dataset.vocabChart);
+      root.querySelector('[data-back]').setAttribute('aria-label',T('返回词汇表','Back to glossary'));
+      sourceCard=glossaryEntry;
+      animateLab(true);
+      return;
+    }
+    const related=button.dataset.vocabRelated;
+    if(related){
+      glossaryState.query='';glossaryState.filter='all';
+      glossaryState.category=glossaryById.get(related).category;
+      glossaryState.selected=related;
+      glossaryLayer.querySelector('[data-vocab-search]').value='';
+      glossaryPaintList();
+      glossaryLayer.classList.add('vocab-show-reading');
+      glossaryPaintArticle({focus:true});
+      return;
+    }
+    if(button.dataset.vocabTerm){
+      glossaryState.selected=button.dataset.vocabTerm;
+      glossaryLayer.classList.add('vocab-show-reading');
+      glossaryPaintArticle({focus:true});return;
+    }
+    if(button.dataset.vocabCategory)glossaryState.category=button.dataset.vocabCategory;
+    else if(button.dataset.vocabFilter)glossaryState.filter=button.dataset.vocabFilter;
+    else if(button.hasAttribute('data-vocab-clear')){
+      glossaryState.category='all';glossaryState.filter='all';glossaryState.query='';
+      glossaryLayer.querySelector('[data-vocab-search]').value='';
+    }else return;
+    glossaryLayer.classList.remove('vocab-show-reading');
+    glossaryPaintList();
+  });
+  new MutationObserver(()=>{
+    if(glossaryLayer.firstElementChild)glossaryRender();
+    if(!glossaryLayer.hidden)document.title=T('微观词汇表 · AP 微观图表','Microeconomics glossary · AP Micro Charts');
+  }).observe(document.documentElement,{attributes:true,attributeFilter:['data-lang']});
+}
+
 function setupHome(){
  window.animateEconPage=animateEconPage;
  document.querySelectorAll('[data-u1-topic]').forEach(card=>{const t=card.dataset.u1Topic;card.dataset.labTopic=t;card.querySelector('.knowledge-code')?.remove();const img=card.querySelector('img');img.removeAttribute('data-u1-preview');img.dataset.labPreview=t;});
@@ -6956,6 +7661,7 @@ function setupHome(){
  document.addEventListener('click',e=>{const c=e.target.closest('[data-lab-topic]');if(c){e.preventDefault();e.stopImmediatePropagation();if(morphing)return;lang=document.documentElement.dataset.lang==='en'?'en':'zh';sourceCard=c;show(c.dataset.labTopic);animateLab(true);}},true);
  new MutationObserver(()=>{const next=document.documentElement.dataset.lang==='en'?'en':'zh';if(next!==lang){lang=next;if(!root.hidden)switchTopic(active,{languageChanged:true});}applyLibrary();if(manager.open)renderManager({restoreListScroll:true});previews();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-lang']});
  previews();
+ setupGlossary();
  setupGuide(document.getElementById('homeScreen'));
  document.documentElement.setAttribute('data-lab-ready','');
 }
